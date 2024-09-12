@@ -1,4 +1,3 @@
-import React from "react";
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import { links } from "../../constant/data";

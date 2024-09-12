@@ -1,4 +1,3 @@
-import React from "react";
 import { links } from "../../constant/data";
 import { CiShoppingCart } from "react-icons/ci";
 import {

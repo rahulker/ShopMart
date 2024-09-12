@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
 import { handleSendData } from "../../constant/http";
@@ -18,13 +18,12 @@ const LogIn = () => {
   });
   function handleSubmit(e) {
     e.preventDefault();
-    setUserData((state) => {
-      return {
-        ...state,
-        isEmailCorrect: false,
-        isPassCorrect: false,
-      };
-    });
+    setUserData((state) => ({
+      ...state,
+      isEmailCorrect: false,
+      isPassCorrect: false,
+    }));
+    console.log(userData);
     if (!userData.emailData.includes("@") && userData.passData.length < 8) {
       setUserData((state) => ({
         ...state,
@@ -36,19 +35,25 @@ const LogIn = () => {
     if (userData.passData.length < 8) {
       console.log("hello");
 
-      setUserData((state) => ({ ...state, isCorrect: !state.isCorrect }));
+      setUserData((state) => ({
+        ...state,
+        isPassCorrect: !state.isPassCorrect,
+      }));
       return;
     }
     if (!userData.emailData.includes("@")) {
-      setUserData((state) => ({ ...state, isCorrect: !state.isCorrect }));
+      setUserData((state) => ({
+        ...state,
+        isEmailCorrect: !state.isEmailCorrect,
+      }));
       return;
     }
-    const userdata = {
+    const newUserdata = {
       id: Math.ceil(Math.random() * 10000),
       email: userData.emailData,
       pass: userData.passData,
     };
-    handleSendData(userdata);
+    handleSendData(newUserdata);
     dispacth(handleLogin());
     navigate("/");
   }
@@ -102,7 +107,11 @@ const LogIn = () => {
                 : "password atleast 8 chanracter long"}
             </p>
           )}
-          <Button className="mt-5 w-full " text="Log In" type="submit" />
+          <Button
+            className="mt-5 w-full border-black "
+            text="Log In"
+            type="submit"
+          />
         </form>
         <div className="mt-4 text-center">
           <p>
