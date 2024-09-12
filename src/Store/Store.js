@@ -6,6 +6,7 @@ const initialState = {
   cart: {
     items: [],
   },
+  searchModal: false,
 };
 
 const slice = createSlice({
@@ -63,6 +64,9 @@ const slice = createSlice({
         0
       );
     },
+    handleSearchModal: (state) => {
+      state.searchModal = !state.searchModal;
+    },
   },
 });
 
@@ -75,4 +79,5 @@ export const {
   handleLogout,
   handleAddToCart,
   handleRemoveFromCart,
+  handleSearchModal,
 } = slice.actions;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { handleSingleFetch, handleProductData } from "../../constant/http";
 import { handleAddToCart } from "../../Store/Store";
@@ -12,8 +12,12 @@ const ProductDetails = () => {
   const [suggest, setSuggest] = useState([]);
   useEffect(() => {
     async function handleSuggest() {
-      let res = await handleProductData(4);
-      setSuggest(res);
+      let res = await handleProductData();
+      let shuffledRes = res
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+      setSuggest(shuffledRes);
     }
     handleSuggest();
   }, []);
@@ -28,7 +32,6 @@ const ProductDetails = () => {
   function handleAddToCartItem(data) {
     dispactch(handleAddToCart(data));
   }
-
   return (
     <div className="mt-10">
       <div className="grid grid-cols-[20%_40%] gap-14 items-center justify-center">
@@ -56,9 +59,9 @@ const ProductDetails = () => {
       <div className="mt-20">
         <h2 className="text-4xl font-semibold">Suggested product</h2>
         <div className="grid grid-cols-[300px_300px_300px_300px] gap-10 justify-between justify-items-center  mt-5">
-          {suggest.map((item) => (
-            <Card item={item} key={item.id} />
-          ))}
+          {suggest.slice(0, 4).map((item) => {
+            return <Card item={item} key={item.id} />;
+          })}
         </div>
       </div>
     </div>

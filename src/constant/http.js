@@ -31,3 +31,15 @@ export async function getAllCatagory() {
   let data = await respone.json();
   return data;
 }
+
+export async function handleGetUser() {
+  let respone = await fetch(
+    "https://flipcartdata-default-rtdb.asia-southeast1.firebasedatabase.app/users.json"
+  );
+  let data = await respone.json();
+  if (data === null) {
+    return;
+  }
+  let obj = Object.values(data);
+  return obj;
+}

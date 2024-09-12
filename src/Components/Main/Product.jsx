@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import Card from "../Custom/Card";
 import { getAllCatagory } from "../../constant/http";

@@ -1,5 +1,4 @@
-import React, { Suspense } from "react";
-import { Await, Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import Card from "../Custom/Card";
 const Home = () => {

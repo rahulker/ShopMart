@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
-import { handleSendData } from "../../constant/http";
 import Button from "../Custom/Button";
-import { useDispatch } from "react-redux";
-import { handleLogin } from "../../Store/Store";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 const LogIn = () => {
-  const dispacth = useDispatch();
-  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     emailData: "",
     passData: "",
@@ -24,6 +18,17 @@ const LogIn = () => {
       isPassCorrect: false,
     }));
     console.log(userData);
+    if (
+      userData.emailData.replace(/^[ ]+/g, "") === "" ||
+      userData.passData.replace(/^[ ]+/g, "") === ""
+    ) {
+      setUserData((state) => ({
+        ...state,
+        isPassCorrect: !state.isPassCorrect,
+        isEmailCorrect: !state.isEmailCorrect,
+      }));
+      return;
+    }
     if (!userData.emailData.includes("@") && userData.passData.length < 8) {
       setUserData((state) => ({
         ...state,
@@ -48,14 +53,6 @@ const LogIn = () => {
       }));
       return;
     }
-    const newUserdata = {
-      id: Math.ceil(Math.random() * 10000),
-      email: userData.emailData,
-      pass: userData.passData,
-    };
-    handleSendData(newUserdata);
-    dispacth(handleLogin());
-    navigate("/");
   }
   return (
     <section className="flex flex-col items-center  mt-10">
@@ -115,7 +112,7 @@ const LogIn = () => {
         </form>
         <div className="mt-4 text-center">
           <p>
-            <span> Don't have an account?</span>{" "}
+            <span> Don{"'"}t have an account?</span>{" "}
             <Link className="underline" to="/signin">
               Sign in
             </Link>
