@@ -7,6 +7,10 @@ const initialState = {
     items: [],
   },
   searchModal: false,
+  userData: {
+    userAlreadyExists: false,
+    userDetail: {},
+  },
 };
 
 const slice = createSlice({
@@ -67,6 +71,12 @@ const slice = createSlice({
     handleSearchModal: (state) => {
       state.searchModal = !state.searchModal;
     },
+    handleUserAlreadyLogIn: (state) => {
+      state.userData.userAlreadyExists = true;
+    },
+    handleUserData: (state, action) => {
+      state.userData.userData = action.payload;
+    },
   },
 });
 
@@ -80,4 +90,6 @@ export const {
   handleAddToCart,
   handleRemoveFromCart,
   handleSearchModal,
+  handleUserAlreadyLogIn,
+  handleUserData,
 } = slice.actions;

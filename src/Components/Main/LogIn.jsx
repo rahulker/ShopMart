@@ -2,8 +2,12 @@ import { useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleUserExites } from "../../constant/userExites";
 const LogIn = () => {
+  const dispacth = useDispatch();
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     emailData: "",
     passData: "",
@@ -17,23 +21,22 @@ const LogIn = () => {
       isEmailCorrect: false,
       isPassCorrect: false,
     }));
-    console.log(userData);
     if (
       userData.emailData.replace(/^[ ]+/g, "") === "" ||
       userData.passData.replace(/^[ ]+/g, "") === ""
     ) {
       setUserData((state) => ({
         ...state,
-        isPassCorrect: !state.isPassCorrect,
-        isEmailCorrect: !state.isEmailCorrect,
+        isPassCorrect: true,
+        isEmailCorrect: true,
       }));
       return;
     }
     if (!userData.emailData.includes("@") && userData.passData.length < 8) {
       setUserData((state) => ({
         ...state,
-        isPassCorrect: !state.isPassCorrect,
-        isEmailCorrect: !state.isEmailCorrect,
+        isPassCorrect: true,
+        isEmailCorrect: true,
       }));
       return;
     }
@@ -42,17 +45,22 @@ const LogIn = () => {
 
       setUserData((state) => ({
         ...state,
-        isPassCorrect: !state.isPassCorrect,
+        isPassCorrect: true,
       }));
       return;
     }
     if (!userData.emailData.includes("@")) {
       setUserData((state) => ({
         ...state,
-        isEmailCorrect: !state.isEmailCorrect,
+        isEmailCorrect: true,
       }));
       return;
     }
+    const newUserdata = {
+      email: userData.emailData,
+      pass: userData.passData,
+    };
+    handleUserExites(newUserdata, dispacth, navigate);
   }
   return (
     <section className="flex flex-col items-center  mt-10">

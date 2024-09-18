@@ -3,13 +3,14 @@ import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleSendData } from "../../constant/http";
 import { handleLogin } from "../../Store/Store";
 
 const SignIn = () => {
   const dispacth = useDispatch();
   const navigate = useNavigate();
+  const stateData = useSelector((state) => state.userData.userAlreadyExists);
   const [newUserDetail, setNewUserDetail] = useState({
     name: "",
     email: "",
@@ -85,9 +86,11 @@ const SignIn = () => {
       name: newUserDetail.name,
       pass: newUserDetail.password,
     };
-    handleSendData(newUserdata);
-    dispacth(handleLogin());
-    navigate("/");
+    if (!stateData) {
+      handleSendData(newUserdata);
+      dispacth(handleLogin());
+      navigate("/");
+    }
   }
   return (
     <div className="mt-10 flex justify-center items-center flex-col">
@@ -126,6 +129,8 @@ const SignIn = () => {
           <p className="text-red-300 mt-1">
             {newUserDetail.email.length == 0
               ? "please enter email"
+              : stateData
+              ? "place try to log in"
               : "Please enter correct email"}
           </p>
         )}

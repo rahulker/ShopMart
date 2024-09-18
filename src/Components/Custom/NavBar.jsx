@@ -3,24 +3,14 @@ import { NavLink } from "react-router-dom";
 import { links } from "../../constant/data";
 import { useSelector } from "react-redux";
 import { RxAvatar } from "react-icons/rx";
-import { handleGetUser } from "../../constant/http";
-import { useEffect, useState } from "react";
 
 const NavBar = () => {
-  const [user, setUser] = useState([]);
   const data = useSelector((state) => state.isLogin);
   const totalItemsInCart = useSelector((state) => state.totalItemsInCart);
+  const userData = useSelector((state) => state.userData);
   const normalClass =
     "font-light text-base text-sm hover:font-semibold transition-all";
   const activeCss = "font-semibold text-sm";
-  useEffect(() => {
-    async function handleGetUserLocal() {
-      let res = await handleGetUser();
-      setUser(res);
-    }
-    handleGetUserLocal();
-    return () => {};
-  }, []);
   return (
     <nav className="md:p-4 md:py-2 p-2 flex items-center justify-evenly  bg-white drop-shadow-lg  ">
       <NavLink className="flex items-center gap-1" to="/">
@@ -54,13 +44,15 @@ const NavBar = () => {
         ))}
       </div>
       {data ? (
-        <div className="flex items-center gap-2">
+        <NavBar to="/user" className="flex items-center gap-2">
           <RxAvatar size={25} />
           <div className="flex items-start flex-col">
             <p className="text-base font-medium">Welcome</p>
-            <p className="text-sm font-normal -mt-1">{user[0]?.name}</p>
+            <p className="text-sm font-normal -mt-1">
+              {userData.userDetail.name}
+            </p>
           </div>
-        </div>
+        </NavBar>
       ) : (
         <NavLink
           to="/login"

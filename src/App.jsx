@@ -35,6 +35,10 @@ const App = () => {
           path: "/cart",
           element: <Cart />,
         },
+        {
+          path: "/user",
+          element: <Cart />,
+        },
       ],
     },
   ]);
