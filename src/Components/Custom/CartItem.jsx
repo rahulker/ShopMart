@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleAddToCart, handleRemoveFromCart } from "../../Store/Store";
+import PropTypes from "prop-types";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -51,3 +51,7 @@ const CartItem = ({ item }) => {
 };
 
 export default CartItem;
+
+CartItem.propTypes = {
+  item: PropTypes.object,
+};

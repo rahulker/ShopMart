@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import PropTypes from "prop-types";
+
 const InputAndData = ({
   classData,
   isPassword,
@@ -51,3 +53,12 @@ const InputAndData = ({
 };
 
 export default InputAndData;
+
+InputAndData.propTypes = {
+  classData: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  classDataName: PropTypes.string,
+  isPassword: PropTypes.bool,
+};

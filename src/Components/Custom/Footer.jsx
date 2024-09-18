@@ -37,6 +37,7 @@ const Footer = () => {
                 <li key={item.id}>
                   <NavLink
                     to={item.path}
+                    onClick={window.scrollTo(0, 0)}
                     className="hover:text-gray-400 transition-all"
                   >
                     {item.name}

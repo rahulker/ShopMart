@@ -46,6 +46,7 @@ const NavBar = () => {
             className={({ isActive }) => (isActive ? activeCss : normalClass)}
             key={item.id}
             to={item.path}
+            onClick={window.scrollTo(0, 0)}
           >
             {item.name}
             {item.name === "Cart" ? <>({totalItemsInCart})</> : <></>}
@@ -63,6 +64,7 @@ const NavBar = () => {
       ) : (
         <NavLink
           to="/login"
+          onClick={window.scrollTo(0, 0)}
           className={({ isActive }) =>
             isActive ? `${activeCss} text-base` : `${normalClass} text-base`
           }

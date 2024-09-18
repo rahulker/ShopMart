@@ -1,4 +1,6 @@
 import Button from "./Button";
+import PropTypes from "prop-types";
+
 const Card = ({ item }) => {
   return (
     <div className="flex flex-col shadow-lg justify-between py-4 items-start border border-black rounded-lg ">
@@ -18,3 +20,7 @@ const Card = ({ item }) => {
 };
 
 export default Card;
+
+Card.propTypes = {
+  item: PropTypes.object,
+};

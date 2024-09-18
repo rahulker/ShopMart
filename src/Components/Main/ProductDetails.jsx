@@ -20,7 +20,7 @@ const ProductDetails = () => {
       setSuggest(shuffledRes);
     }
     handleSuggest();
-  }, []);
+  }, [singleData]);
 
   useEffect(() => {
     async function fetchedData() {
