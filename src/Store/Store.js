@@ -9,7 +9,7 @@ const initialState = {
   showModal: false,
   userData: {
     userAlreadyExists: false,
-    createUser: false,
+    createUser: true,
     userDetail: {},
   },
 };
@@ -18,10 +18,6 @@ const slice = createSlice({
   name: "state",
   initialState,
   reducers: {
-    handleLogin: (state) => {
-      state.isLogin = !state.isLogin;
-      console.log(state.isLogin);
-    },
     handleLogout: (state) => {
       state.isLogin = false;
     },
@@ -87,6 +83,10 @@ const slice = createSlice({
     handleCreateUser: (state) => {
       state.userData.createUser = !state.userData.createUser;
       console.log(state.userData.createUser);
+    },
+    handleLogin: (state) => {
+      state.isLogin = true;
+      console.log(state.isLogin);
     },
   },
 });

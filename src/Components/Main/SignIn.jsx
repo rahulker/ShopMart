@@ -9,9 +9,9 @@ import { handleLogin } from "../../Store/Store";
 import { handleUserExites } from "../../constant/userExites";
 
 const SignIn = () => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const stateData = useSelector((state) => state.userData.userAlreadyExists);
+  const stateData = useSelector((state) => state.userData.createUser);
   const [newUserDetail, setNewUserDetail] = useState({
     name: "",
     email: "",
@@ -73,13 +73,14 @@ const SignIn = () => {
       name: newUserDetail.name,
       pass: newUserDetail.password,
     };
-    handleUserExites("signin", newUserdata, dispacth, navigate);
-    if (!stateData) {
+    handleUserExites("signin", newUserdata, dispatch, navigate);
+    if (stateData) {
       handleSendData(newUserdata);
-      dispacth(handleLogin());
+      dispatch(handleLogin());
       navigate("/");
     }
   }
+  console.log(stateData);
   return (
     <div className="mt-10 flex justify-center items-center flex-col">
       <div className="flex flex-col justify-center items-center">

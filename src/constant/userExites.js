@@ -2,7 +2,7 @@ import { handleGetUser } from "./http";
 import {
   handleUserAlreadyLogIn,
   handleUserData,
-  // handleLogin,
+  handleLogin,
   handleCreateUser,
 } from "../Store/Store";
 export async function handleUserExites(id, userData, dispatch, navigate) {
@@ -16,14 +16,18 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
         if (currentUser[0].email === userData.email) {
           console.log("Dispatch and Navigate called");
           dispatch(handleUserData(currentUser[0]));
+          dispatch(handleLogin());
           navigate("/user");
           return;
         } else {
           dispatch(handleCreateUser());
         }
-      } else if (id === "signin") {
+      }
+      if (id === "signin") {
         if (currentUser[0].email === userData.email) {
           dispatch(handleUserAlreadyLogIn());
+          console.log("hello");
+
           return;
         } else {
           dispatch(handleCreateUser());
