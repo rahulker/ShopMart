@@ -1,11 +1,12 @@
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import { links } from "../../constant/data";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RxAvatar } from "react-icons/rx";
-
+import { handleShowModal } from "../../Store/Store";
 const NavBar = () => {
   const data = useSelector((state) => state.isLogin);
+  const dispacth = useDispatch();
   const totalItemsInCart = useSelector((state) => state.totalItemsInCart);
   const userData = useSelector((state) => state.userData);
   const normalClass =
@@ -22,7 +23,10 @@ const NavBar = () => {
       </NavLink>
       <div className="bg-[#F0F5FF] grid grid-cols-[5%_95%] items-center gap-4 px-4  lg:min-w-[400px]">
         <CiSearch size={25} />
-        <span className="border-l border-gray-300">
+        <span
+          className="border-l border-gray-300"
+          onClick={() => dispacth(handleShowModal())}
+        >
           <input
             type="text"
             className="bg-transparent w-full p-2 pr-0 focus:border-none placeholder:text-black"

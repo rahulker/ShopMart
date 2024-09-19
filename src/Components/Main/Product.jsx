@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
+import { useRouteLoaderData } from "react-router";
 import Card from "../Custom/Card";
 import { getAllCatagory } from "../../constant/http";
 import { FaAngleDown } from "react-icons/fa6";
 
 const Product = () => {
   let newData = [];
-  const data = useLoaderData();
+  const data = useRouteLoaderData("root");
   const [allCategory, setAllCategory] = useState({
     category: "All",
     getCatagorys: [],

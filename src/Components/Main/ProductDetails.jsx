@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { handleSingleFetch, handleProductData } from "../../constant/http";
+import { useParams, useRouteLoaderData } from "react-router";
+import { handleSingleFetch } from "../../constant/http";
 import { handleAddToCart } from "../../Store/Store";
 import Button from "../Custom/Button";
 import { useDispatch } from "react-redux";
@@ -8,11 +8,11 @@ import Card from "../Custom/Card";
 const ProductDetails = () => {
   const { id } = useParams();
   const dispactch = useDispatch();
+  let res = useRouteLoaderData("root");
   const [singleData, setSingleData] = useState({});
   const [suggest, setSuggest] = useState([]);
   useEffect(() => {
-    async function handleSuggest() {
-      let res = await handleProductData();
+    function handleSuggest() {
       let shuffledRes = res
         .map((value) => ({ value, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
@@ -20,7 +20,7 @@ const ProductDetails = () => {
       setSuggest(shuffledRes);
     }
     handleSuggest();
-  }, [singleData]);
+  }, [singleData, res]);
 
   useEffect(() => {
     async function fetchedData() {

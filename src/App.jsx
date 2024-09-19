@@ -8,16 +8,16 @@ const App = () => {
     {
       path: "/",
       element: <Root />,
+      loader: () => loaderHomeData(),
+      id: "root",
       children: [
         {
           index: true,
           element: <Home />,
-          loader: () => loaderHomeData(8),
         },
         {
           path: "/product",
           element: <Product />,
-          loader: () => loaderHomeData(),
         },
         {
           path: "/login",

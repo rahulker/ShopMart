@@ -6,7 +6,7 @@ const initialState = {
   cart: {
     items: [],
   },
-  searchModal: false,
+  showModal: false,
   userData: {
     userAlreadyExists: false,
     userDetail: {},
@@ -77,6 +77,9 @@ const slice = createSlice({
     handleUserData: (state, action) => {
       state.userData.userData = action.payload;
     },
+    handleShowModal: (state) => {
+      state.showModal = !state.showModal;
+    },
   },
 });
 
@@ -92,4 +95,5 @@ export const {
   handleSearchModal,
   handleUserAlreadyLogIn,
   handleUserData,
+  handleShowModal,
 } = slice.actions;
