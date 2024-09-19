@@ -9,6 +9,7 @@ const initialState = {
   showModal: false,
   userData: {
     userAlreadyExists: false,
+    createUser: false,
     userDetail: {},
   },
 };
@@ -72,13 +73,16 @@ const slice = createSlice({
       state.searchModal = !state.searchModal;
     },
     handleUserAlreadyLogIn: (state) => {
-      state.userData.userAlreadyExists = true;
+      state.userData.userAlreadyExists = !state.userData.userAlreadyExists;
     },
     handleUserData: (state, action) => {
-      state.userData.userData = action.payload;
+      state.userData.userDetail = action.payload;
     },
     handleShowModal: (state) => {
       state.showModal = !state.showModal;
+    },
+    handleCreateUser: (state) => {
+      state.userData.createUser = !state.userData.createUser;
     },
   },
 });
@@ -96,4 +100,5 @@ export const {
   handleUserAlreadyLogIn,
   handleUserData,
   handleShowModal,
+  handleCreateUser,
 } = slice.actions;

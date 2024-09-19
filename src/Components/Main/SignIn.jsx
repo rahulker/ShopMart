@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSendData } from "../../constant/http";
 import { handleLogin } from "../../Store/Store";
+import { handleUserExites } from "../../constant/userExites";
 
 const SignIn = () => {
   const dispacth = useDispatch();
@@ -32,30 +33,16 @@ const SignIn = () => {
       isCPassCorrect: false,
     }));
     if (
-      newUserDetail.email.replace(/^[ ]+/g, "") === "" ||
-      newUserDetail.name.replace(/^[ ]+/g, "") === "" ||
-      newUserDetail.password.replace(/^[ ]+/g, "") === "" ||
-      newUserDetail.cPassword.replace(/^[ ]+/g, "") === ""
+      newUserDetail.email.trim() === "" ||
+      newUserDetail.name.trim() === "" ||
+      newUserDetail.password.trim() === "" ||
+      newUserDetail.cPassword.trim() === ""
     ) {
       setNewUserDetail((state) => ({
         ...state,
         isEmailCorrect: true,
         isPassCorrect: true,
         isCPassCorrect: true,
-      }));
-      return;
-    }
-
-    if (
-      !newUserDetail.email.includes("@") &&
-      newUserDetail.password.length < 8 &&
-      !newUserDetail.cPassword === newUserDetail.password
-    ) {
-      setNewUserDetail((state) => ({
-        ...state,
-        isCPassCorrect: true,
-        isEmailCorrect: true,
-        isPassCorrect: true,
       }));
       return;
     }
@@ -86,6 +73,7 @@ const SignIn = () => {
       name: newUserDetail.name,
       pass: newUserDetail.password,
     };
+    handleUserExites("signin", newUserdata, dispacth, navigate);
     if (!stateData) {
       handleSendData(newUserdata);
       dispacth(handleLogin());

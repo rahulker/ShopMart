@@ -3,20 +3,36 @@ import {
   handleUserAlreadyLogIn,
   handleUserData,
   handleLogin,
+  handleCreateUser,
 } from "../Store/Store";
 
-export async function handleUserExites(userData, dispacth, navigate) {
-  let responce = await handleGetUser();
-  if (responce !== null) {
-    let currentUser = responce?.filter((data) => data.email === userData.email);
-    if (currentUser[0].email === userData.email) {
-      dispacth(handleUserAlreadyLogIn());
-      dispacth(handleUserData(currentUser[0]));
-      dispacth(handleLogin());
-      navigate("/");
-      console.log(currentUser);
+export async function handleUserExites(id, userData, dispatch, navigate) {
+  try {
+    const allUsers = await handleGetUser();
+    const currentUser = allUsers.filter(
+      (item) => item.email === userData.email
+    );
+
+    if (currentUser.length > 0) {
+      if (id === "login") {
+        console.log("Dispatch and Navigate called");
+        dispatch(handleLogin());
+        dispatch(handleUserData(userData));
+        return navigate("/");
+      } else if (id === "signin") {
+        dispatch(handleUserAlreadyLogIn());
+        console.log(currentUser);
+        return;
+      } else {
+        dispatch(handleCreateUser());
+        console.log(currentUser);
+        return;
+      }
     } else {
-      console.log("need to create user");
+      dispatch(handleCreateUser());
+      return;
     }
+  } catch (error) {
+    console.error("Error in handleUserExites:", error);
   }
 }

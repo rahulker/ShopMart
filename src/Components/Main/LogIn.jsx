@@ -3,11 +3,12 @@ import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleUserExites } from "../../constant/userExites";
 const LogIn = () => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userNotExists = useSelector((state) => state.userData.createUser);
   const [userData, setUserData] = useState({
     emailData: "",
     passData: "",
@@ -60,7 +61,7 @@ const LogIn = () => {
       email: userData.emailData,
       pass: userData.passData,
     };
-    handleUserExites(newUserdata, dispacth, navigate);
+    handleUserExites("login", newUserdata, dispatch, navigate);
   }
   return (
     <section className="flex flex-col items-center  mt-10">
@@ -89,6 +90,8 @@ const LogIn = () => {
             <p className="text-red-300 mt-1.5">
               {userData.emailData.length == 0
                 ? "please enter email"
+                : userNotExists
+                ? "place create account"
                 : "Please enter correct email"}
             </p>
           )}

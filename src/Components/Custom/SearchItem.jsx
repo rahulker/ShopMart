@@ -7,7 +7,7 @@ const SearchItem = ({ item, dispacth, handleShowModal }) => {
       to={`/product/${item.id}`}
       key={item.id}
       onClick={() => dispacth(handleShowModal())}
-      className="mt-5 border-black border py-2 px-4 rounded-lg grid grid-cols-[10%_auto] gap-5"
+      className="mt-5 border-black border py-2 px-4 rounded-lg grid grid-cols-[10%_auto] gap-5 hover:shadow-lg hover:transition-shadow"
     >
       <img src={item.image} alt={item.title} className=" object-contain" />
       <div>

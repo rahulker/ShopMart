@@ -1,5 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, LogIn, Product, ProductDetails, Cart } from "./Components/Main";
+import {
+  Home,
+  LogIn,
+  Product,
+  ProductDetails,
+  Cart,
+  User,
+} from "./Components/Main";
 import { handleProductData as loaderHomeData } from "./constant/http";
 import Root from "./Components/Main/Root";
 import SignIn from "./Components/Main/SignIn";
@@ -37,7 +44,7 @@ const App = () => {
         },
         {
           path: "/user",
-          element: <Cart />,
+          element: <User />,
         },
       ],
     },
