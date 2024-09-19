@@ -2,31 +2,33 @@ import { handleGetUser } from "./http";
 import {
   handleUserAlreadyLogIn,
   handleUserData,
-  handleLogin,
+  // handleLogin,
   handleCreateUser,
 } from "../Store/Store";
-
 export async function handleUserExites(id, userData, dispatch, navigate) {
   try {
     const allUsers = await handleGetUser();
     const currentUser = allUsers.filter(
       (item) => item.email === userData.email
     );
-
     if (currentUser.length > 0) {
       if (id === "login") {
-        console.log("Dispatch and Navigate called");
-        dispatch(handleLogin());
-        dispatch(handleUserData(userData));
-        return navigate("/");
+        if (currentUser[0].email === userData.email) {
+          console.log("Dispatch and Navigate called");
+          dispatch(handleUserData(currentUser[0]));
+          navigate("/user");
+          return;
+        } else {
+          dispatch(handleCreateUser());
+        }
       } else if (id === "signin") {
-        dispatch(handleUserAlreadyLogIn());
-        console.log(currentUser);
-        return;
-      } else {
-        dispatch(handleCreateUser());
-        console.log(currentUser);
-        return;
+        if (currentUser[0].email === userData.email) {
+          dispatch(handleUserAlreadyLogIn());
+          return;
+        } else {
+          dispatch(handleCreateUser());
+          return;
+        }
       }
     } else {
       dispatch(handleCreateUser());

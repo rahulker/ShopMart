@@ -19,7 +19,8 @@ const slice = createSlice({
   initialState,
   reducers: {
     handleLogin: (state) => {
-      state.isLogin = true;
+      state.isLogin = !state.isLogin;
+      console.log(state.isLogin);
     },
     handleLogout: (state) => {
       state.isLogin = false;
@@ -74,15 +75,18 @@ const slice = createSlice({
     },
     handleUserAlreadyLogIn: (state) => {
       state.userData.userAlreadyExists = !state.userData.userAlreadyExists;
+      console.log(state.userData.userAlreadyExists);
     },
     handleUserData: (state, action) => {
       state.userData.userDetail = action.payload;
+      console.log(action.payload);
     },
     handleShowModal: (state) => {
       state.showModal = !state.showModal;
     },
     handleCreateUser: (state) => {
       state.userData.createUser = !state.userData.createUser;
+      console.log(state.userData.createUser);
     },
   },
 });

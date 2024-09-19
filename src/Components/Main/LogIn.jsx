@@ -5,6 +5,7 @@ import Button from "../Custom/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { handleUserExites } from "../../constant/userExites";
+// import { handleLogin } from "../../Store/Store";
 const LogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ const LogIn = () => {
       pass: userData.passData,
     };
     handleUserExites("login", newUserdata, dispatch, navigate);
+    // dispatch(handleLogin());
   }
   return (
     <section className="flex flex-col items-center  mt-10">
