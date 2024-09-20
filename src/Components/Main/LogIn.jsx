@@ -3,13 +3,12 @@ import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleUserExites } from "../../constant/userExites";
-// import { handleLogin } from "../../Store/Store";
+let fnData;
 const LogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userNotExists = useSelector((state) => state.userData.createUser);
   const [userData, setUserData] = useState({
     emailData: "",
     passData: "",
@@ -23,10 +22,7 @@ const LogIn = () => {
       isEmailCorrect: false,
       isPassCorrect: false,
     }));
-    if (
-      userData.emailData.replace(/^[ ]+/g, "") === "" ||
-      userData.passData.replace(/^[ ]+/g, "") === ""
-    ) {
+    if (userData.emailData.trim() === "" || userData.passData.trim() === "") {
       setUserData((state) => ({
         ...state,
         isPassCorrect: true,
@@ -62,8 +58,16 @@ const LogIn = () => {
       email: userData.emailData,
       pass: userData.passData,
     };
-    handleUserExites("login", newUserdata, dispatch, navigate);
+    fnData = handleUserExites("login", newUserdata, dispatch, navigate);
+    if (fnData) {
+      setUserData((state) => ({
+        ...state,
+        isEmailCorrect: true,
+      }));
+      return;
+    }
   }
+  console.log(userData.isEmailCorrect);
   return (
     <section className="flex flex-col items-center  mt-10">
       <div className="flex flex-col items-center">
@@ -91,8 +95,8 @@ const LogIn = () => {
             <p className="text-red-300 mt-1.5">
               {userData.emailData.length == 0
                 ? "please enter email"
-                : userNotExists
-                ? "place create account"
+                : fnData
+                ? "Email not found,place create account"
                 : "Please enter correct email"}
             </p>
           )}

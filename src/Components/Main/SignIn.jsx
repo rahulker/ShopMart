@@ -3,15 +3,15 @@ import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleSendData } from "../../constant/http";
 import { handleLogin } from "../../Store/Store";
 import { handleUserExites } from "../../constant/userExites";
-
+let newUserdata;
+let stateData;
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const stateData = useSelector((state) => state.userData.createUser);
   const [newUserDetail, setNewUserDetail] = useState({
     name: "",
     email: "",
@@ -67,20 +67,22 @@ const SignIn = () => {
       }));
       return;
     }
-    const newUserdata = {
+    newUserdata = {
       id: Math.ceil(Math.random() * 10000),
       email: newUserDetail.email,
       name: newUserDetail.name,
       pass: newUserDetail.password,
     };
-    handleUserExites("signin", newUserdata, dispatch, navigate);
+    stateData = handleUserExites("signin", newUserdata, dispatch, navigate);
     if (stateData) {
+      setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
+    }
+    if (!stateData) {
       handleSendData(newUserdata);
       dispatch(handleLogin());
       navigate("/");
     }
   }
-  console.log(stateData);
   return (
     <div className="mt-10 flex justify-center items-center flex-col">
       <div className="flex flex-col justify-center items-center">
@@ -119,7 +121,7 @@ const SignIn = () => {
             {newUserDetail.email.length == 0
               ? "please enter email"
               : stateData
-              ? "place try to log in"
+              ? "Email already in use, place try to log in"
               : "Please enter correct email"}
           </p>
         )}

@@ -16,7 +16,7 @@ const Home = () => {
             <FaLongArrowAltRight />
           </Link>
         </div>
-        <div className="grid grid-cols-[300px_300px_300px_300px] gap-10 justify-between justify-items-center grid-rows-2 mt-5">
+        <div className="grid grid-cols-[300px_300px_300px_300px] 2xl:grid-cols-[300px_300px_300px_300px_300px] gap-10 justify-between justify-items-center grid-rows-2 mt-5">
           {data.slice(0, 8).map((item) => (
             <Card item={item} key={item.id} />
           ))}

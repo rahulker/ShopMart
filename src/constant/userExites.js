@@ -21,20 +21,23 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           return;
         } else {
           dispatch(handleCreateUser());
+          return true;
         }
       }
       if (id === "signin") {
         if (currentUser[0].email === userData.email) {
+          console.log("Dispatch and Navigate called:", id);
           dispatch(handleUserAlreadyLogIn());
           console.log("hello");
-
-          return;
+          return true;
         } else {
+          console.log("Dispatch and Navigate called");
           dispatch(handleCreateUser());
-          return;
+          return false;
         }
       }
     } else {
+      console.log("Dispatch and Navigate called");
       dispatch(handleCreateUser());
       return;
     }

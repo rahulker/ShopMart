@@ -9,7 +9,7 @@ const initialState = {
   showModal: false,
   userData: {
     userAlreadyExists: false,
-    createUser: true,
+    createUser: false,
     userDetail: {},
   },
 };
@@ -18,9 +18,6 @@ const slice = createSlice({
   name: "state",
   initialState,
   reducers: {
-    handleLogout: (state) => {
-      state.isLogin = false;
-    },
     handleAddToCart: (state, action) => {
       const newCart = [...state.cart.items];
       const existingItem = newCart.findIndex(
@@ -66,8 +63,8 @@ const slice = createSlice({
         0
       );
     },
-    handleSearchModal: (state) => {
-      state.searchModal = !state.searchModal;
+    handleShowModal: (state) => {
+      state.showModal = !state.showModal;
     },
     handleUserAlreadyLogIn: (state) => {
       state.userData.userAlreadyExists = !state.userData.userAlreadyExists;
@@ -75,18 +72,13 @@ const slice = createSlice({
     },
     handleUserData: (state, action) => {
       state.userData.userDetail = action.payload;
-      console.log(action.payload);
-    },
-    handleShowModal: (state) => {
-      state.showModal = !state.showModal;
     },
     handleCreateUser: (state) => {
-      state.userData.createUser = !state.userData.createUser;
+      state.userData.createUser = true;
       console.log(state.userData.createUser);
     },
     handleLogin: (state) => {
-      state.isLogin = true;
-      console.log(state.isLogin);
+      state.isLogin = !state.isLogin;
     },
   },
 });
@@ -97,10 +89,8 @@ export const store = configureStore({
 
 export const {
   handleLogin,
-  handleLogout,
   handleAddToCart,
   handleRemoveFromCart,
-  handleSearchModal,
   handleUserAlreadyLogIn,
   handleUserData,
   handleShowModal,

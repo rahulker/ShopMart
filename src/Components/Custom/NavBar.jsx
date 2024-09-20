@@ -48,7 +48,7 @@ const NavBar = () => {
         ))}
       </div>
       {data ? (
-        <NavBar to="/user" className="flex items-center gap-2">
+        <NavLink to="/user" className="flex items-center gap-2">
           <RxAvatar size={25} />
           <div className="flex items-start flex-col">
             <p className="text-base font-medium">Welcome</p>
@@ -56,7 +56,7 @@ const NavBar = () => {
               {userData.userDetail.name}
             </p>
           </div>
-        </NavBar>
+        </NavLink>
       ) : (
         <NavLink
           to="/login"
