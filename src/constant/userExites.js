@@ -1,4 +1,4 @@
-import { handleGetUser } from "./http";
+import { handleGetUser, handleSendData } from "./http";
 import {
   handleUserAlreadyLogIn,
   handleUserData,
@@ -14,11 +14,9 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
     if (currentUser.length > 0) {
       if (id === "login") {
         if (currentUser[0].email === userData.email) {
-          console.log("Dispatch and Navigate called");
           dispatch(handleUserData(currentUser[0]));
           dispatch(handleLogin());
           navigate("/user");
-          return;
         } else {
           dispatch(handleCreateUser());
           return true;
@@ -26,18 +24,22 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
       }
       if (id === "signin") {
         if (currentUser[0].email === userData.email) {
-          console.log("Dispatch and Navigate called:", id);
           dispatch(handleUserAlreadyLogIn());
-          console.log("hello");
           return true;
         } else {
-          console.log("Dispatch and Navigate called");
-          dispatch(handleCreateUser());
-          return false;
+          handleSendData(userData);
+          dispatch(handleUserData(userData));
+          dispatch(handleLogin());
+          navigate("/");
+          return;
         }
       }
     } else {
-      console.log("Dispatch and Navigate called");
+      console.log(currentUser.length);
+      handleSendData(userData);
+      dispatch(handleUserData(userData));
+      dispatch(handleLogin());
+      navigate("/");
       dispatch(handleCreateUser());
       return;
     }

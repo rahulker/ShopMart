@@ -4,9 +4,8 @@ import Button from "../Custom/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { handleSendData } from "../../constant/http";
-import { handleLogin } from "../../Store/Store";
 import { handleUserExites } from "../../constant/userExites";
+import { NavLink } from "react-router-dom";
 let newUserdata;
 let stateData;
 const SignIn = () => {
@@ -76,11 +75,6 @@ const SignIn = () => {
     stateData = handleUserExites("signin", newUserdata, dispatch, navigate);
     if (stateData) {
       setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
-    }
-    if (!stateData) {
-      handleSendData(newUserdata);
-      dispatch(handleLogin());
-      navigate("/");
     }
   }
   return (
@@ -161,6 +155,16 @@ const SignIn = () => {
         )}
         <Button className="w-full mt-5" text="Sign In" />
       </form>
+      <p className="mt-5">
+        Already Have an Account?,{" "}
+        <NavLink
+          to="/login"
+          className="underline"
+          onClick={window.scrollTo(0, 0)}
+        >
+          LogIn
+        </NavLink>
+      </p>
     </div>
   );
 };

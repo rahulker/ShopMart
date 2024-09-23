@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-
 import { RxAvatar } from "react-icons/rx";
 
 const User = () => {

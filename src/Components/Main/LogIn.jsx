@@ -59,7 +59,7 @@ const LogIn = () => {
       pass: userData.passData,
     };
     fnData = handleUserExites("login", newUserdata, dispatch, navigate);
-    if (fnData) {
+    if (fnData == true) {
       setUserData((state) => ({
         ...state,
         isEmailCorrect: true,
@@ -67,7 +67,7 @@ const LogIn = () => {
       return;
     }
   }
-  console.log(userData.isEmailCorrect);
+  console.log("Email check =>", userData.isEmailCorrect);
   return (
     <section className="flex flex-col items-center  mt-10">
       <div className="flex flex-col items-center">
