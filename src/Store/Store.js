@@ -1,23 +1,14 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLogin: true,
+  isLogin: false,
   totalItemsInCart: 0,
   cart: {
     items: [],
   },
   showModal: false,
   userData: {
-    userAlreadyExists: false,
-    createUser: false,
-    userDetail: {
-      address: "12345 street",
-      email: "kerrahul@gmail.com",
-      id: 6863,
-      name: "rahul",
-      pass: "12345678",
-      phoneNum: "8160860886",
-    },
+    userDetail: {},
   },
 };
 
@@ -73,16 +64,8 @@ const slice = createSlice({
     handleShowModal: (state) => {
       state.showModal = !state.showModal;
     },
-    handleUserAlreadyLogIn: (state) => {
-      state.userData.userAlreadyExists = !state.userData.userAlreadyExists;
-      console.log(state.userData.userAlreadyExists);
-    },
     handleUserData: (state, action) => {
       state.userData.userDetail = action.payload;
-    },
-    handleCreateUser: (state) => {
-      state.userData.createUser = true;
-      console.log(state.userData.createUser);
     },
     handleLogin: (state) => {
       state.isLogin = !state.isLogin;
@@ -98,8 +81,6 @@ export const {
   handleLogin,
   handleAddToCart,
   handleRemoveFromCart,
-  handleUserAlreadyLogIn,
   handleUserData,
   handleShowModal,
-  handleCreateUser,
 } = slice.actions;

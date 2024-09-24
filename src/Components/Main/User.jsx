@@ -1,41 +1,78 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { GoPencil } from "react-icons/go";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 import UserEditInput from "../Custom/UserEditInput";
 import Button from "../Custom/Button";
+import { handleEditUser } from "../../constant/http";
+import { handleUserData } from "../../Store/Store";
+import DeleteModal from "../Custom/DeleteModal";
 let buttonStyle = "flex items-center gap-2 w-[100px]";
 const User = () => {
   const userData = useSelector((state) => state.userData.userDetail);
   const isLogin = useSelector((state) => state.isLogin);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userDetailsUpdate, setUserDetailsUpdate] = useState({
     email: userData.email,
     address: userData.address,
     phoneNum: userData.phoneNum,
+    pass: userData.pass,
+  });
+  const [validation, setValidation] = useState({
+    isEmailNotCorrect: false,
+    isPhoneNumNotCorrect: false,
   });
   useEffect(() => {
     if (!isLogin) {
       navigate("/login");
     }
   });
+
   function handleChages(id, e) {
     setUserDetailsUpdate((state) => ({ ...state, [id]: e.target.value }));
   }
   function handleSubmit(e) {
     e.preventDefault();
-  }
-  function handleDeleteUser() {
-    console.log("user Deleted");
-  }
-  function handleSendNewData() {
-    console.log("hello word");
+    if (
+      userDetailsUpdate.email.trim() === "" &&
+      userDetailsUpdate.phoneNum.trim() === ""
+    ) {
+      setValidation(() => ({
+        isEmailNotCorrect: true,
+        isPhoneNumNotCorrect: true,
+      }));
+      return;
+    }
+    if (!userDetailsUpdate.email.includes("@")) {
+      setValidation((state) => ({
+        ...state,
+        isEmailNotCorrect: true,
+      }));
+      return;
+    }
+    if (userDetailsUpdate.phoneNum.length < 8) {
+      setValidation((state) => ({
+        ...state,
+        isPhoneNumNotCorrect: true,
+      }));
+      return;
+    }
+    let userDataToSend = {
+      ...userDetailsUpdate,
+      id: userData.id,
+      name: userData.name,
+    };
+    handleEditUser(userDataToSend);
+    dispatch(handleUserData(userDataToSend));
   }
   return (
     <section className="mt-10 flex items-center flex-col">
+      {showDeleteModal && <DeleteModal />}
       <div className="flex items-center flex-col gap-1.5">
         <RxAvatar size={60} />
         <div>
@@ -51,6 +88,13 @@ const User = () => {
               value={userDetailsUpdate.email}
               onChange={(e) => handleChages("email", e)}
             />
+            {validation.isEmailNotCorrect && (
+              <p className="text-red-300 mt-1.5">
+                {userDetailsUpdate.email.length == 0
+                  ? "please enter email"
+                  : "Please enter correct email"}
+              </p>
+            )}
             <UserEditInput
               isEdit={isEdit}
               userData={userData.phoneNum}
@@ -59,6 +103,13 @@ const User = () => {
               value={userDetailsUpdate.phoneNum}
               onChange={(e) => handleChages("phoneNum", e)}
             />
+            {validation.isPhoneNumNotCorrect && (
+              <p className="text-red-300 mt-1.5">
+                {userDetailsUpdate.phoneNum.length == 0
+                  ? "please enter phone number"
+                  : "Please enter correct phone number"}
+              </p>
+            )}
           </div>
           <div className="mt-4">
             <label className="text-xl">Address</label>
@@ -77,30 +128,19 @@ const User = () => {
               <Button
                 text={isEdit ? "Submit" : [[<GoPencil key={1} />], "Edit"]}
                 className={isEdit ? buttonStyle + " !w-auto" : buttonStyle}
-                onClick={
-                  isEdit
-                    ? () => {
-                        handleSendNewData;
-                      }
-                    : () => {
-                        setIsEdit(true);
-                      }
-                }
+                type={isEdit ? "submit" : undefined}
+                onClick={() => setIsEdit((pre) => !pre)}
               />
+
               <Button
                 text={
                   isEdit ? "Cancel" : [[<FaRegTrashAlt key={1} />], "Delete"]
                 }
                 className={isEdit ? buttonStyle + " !w-auto" : buttonStyle}
-                onClick={
-                  isEdit
-                    ? () => {
-                        setIsEdit(false);
-                      }
-                    : () => {
-                        handleDeleteUser;
-                      }
-                }
+                type="button"
+                onClick={() => {
+                  isEdit ? setIsEdit(false) : setShowDeleteModal(true);
+                }}
               />
             </div>
           </div>
