@@ -14,8 +14,11 @@ const SignIn = () => {
   const [newUserDetail, setNewUserDetail] = useState({
     name: "",
     email: "",
+    phoneNum: "",
     password: "",
     cPassword: "",
+    address: "",
+    isPhoneNumCorrect: false,
     isEmailCorrect: false,
     isPassCorrect: false,
     isCPassCorrect: false,
@@ -32,20 +35,25 @@ const SignIn = () => {
       isCPassCorrect: false,
     }));
     if (
-      newUserDetail.email.trim() === "" ||
-      newUserDetail.name.trim() === "" ||
-      newUserDetail.password.trim() === "" ||
-      newUserDetail.cPassword.trim() === ""
+      newUserDetail.email.trim() === "" &&
+      newUserDetail.name.trim() === "" &&
+      newUserDetail.password.trim() === "" &&
+      newUserDetail.cPassword.trim() === "" &&
+      newUserDetail.phoneNum.trim() === ""
     ) {
       setNewUserDetail((state) => ({
         ...state,
         isEmailCorrect: true,
         isPassCorrect: true,
         isCPassCorrect: true,
+        isPhoneNumCorrect: true,
       }));
       return;
     }
-    if (newUserDetail.cPassword !== newUserDetail.password) {
+    if (
+      newUserDetail.cPassword !== newUserDetail.password ||
+      newUserDetail.cPassword.trim() === ""
+    ) {
       setNewUserDetail((state) => ({
         ...state,
         isCPassCorrect: true,
@@ -59,10 +67,23 @@ const SignIn = () => {
       }));
       return;
     }
-    if (newUserDetail.password.length < 8) {
+    if (
+      newUserDetail.password.length < 8 ||
+      newUserDetail.password.trim() === ""
+    ) {
       setNewUserDetail((state) => ({
         ...state,
         isPassCorrect: true,
+      }));
+      return;
+    }
+    if (
+      newUserDetail.phoneNum.length <= 9 ||
+      !newUserDetail.phoneNum.trim() === ""
+    ) {
+      setNewUserDetail((state) => ({
+        ...state,
+        isPhoneNumCorrect: true,
       }));
       return;
     }
@@ -71,9 +92,11 @@ const SignIn = () => {
       email: newUserDetail.email,
       name: newUserDetail.name,
       pass: newUserDetail.password,
+      phoneNum: newUserDetail.phoneNum,
+      address: newUserDetail.address,
     };
     stateData = handleUserExites("signin", newUserdata, dispatch, navigate);
-    if (stateData) {
+    if (stateData == true) {
       setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
     }
   }
@@ -87,76 +110,114 @@ const SignIn = () => {
         </div>
       </div>
       <form onSubmit={handleSubmit} className="mt-4 min-w-80">
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <InputAndData
+              label="Name"
+              name="name"
+              type="text"
+              className="p-2 border-black border mt-1 w-full rounded-md"
+              placeholder="Enter your name"
+              onChange={(e) => handleInput("name", e)}
+            />
+            {newUserDetail.isEmailCorrect && (
+              <p className="text-red-300 mt-1">
+                {newUserDetail.name.length == 0 && "please enter name"}
+              </p>
+            )}
+          </div>
+          <div>
+            <InputAndData
+              label="Email"
+              name="email"
+              type="email"
+              className="p-2 border-black border mt-1 w-full rounded-md"
+              placeholder="Enter your email"
+              onChange={(e) => handleInput("email", e)}
+            />
+            {newUserDetail.isEmailCorrect && (
+              <p className="text-red-300 mt-1">
+                {newUserDetail.email.length == 0
+                  ? "please enter email"
+                  : stateData
+                  ? "Email already in use, place try to log in"
+                  : "Please enter correct email"}
+              </p>
+            )}
+          </div>
+        </div>
         <InputAndData
-          label="Name"
-          name="name"
-          type="text"
-          className="p-2 border-black border mt-1 w-full rounded-md"
-          placeholder="Enter your name"
-          classData="-mt-0.5"
-          onChange={(e) => handleInput("name", e)}
-        />
-        {newUserDetail.isEmailCorrect && (
-          <p className="text-red-300 mt-1">
-            {newUserDetail.name.length == 0 && "please enter name"}
-          </p>
-        )}
-        <InputAndData
-          label="Email"
-          name="email"
-          type="email"
-          className="p-2 border-black border mt-1 w-full rounded-md"
-          placeholder="Enter your email"
+          label="Phone number"
+          name="Phone number"
+          type="number"
+          className="p-2 border-black border appearance-none mt-1  w-full rounded-md"
+          placeholder="Enter your Phone number"
           classData="mt-2.5"
-          onChange={(e) => handleInput("email", e)}
+          onChange={(e) => handleInput("phoneNum", e)}
         />
-        {newUserDetail.isEmailCorrect && (
+        {newUserDetail.isPhoneNumCorrect && (
           <p className="text-red-300 mt-1">
-            {newUserDetail.email.length == 0
-              ? "please enter email"
-              : stateData
-              ? "Email already in use, place try to log in"
-              : "Please enter correct email"}
+            {newUserDetail.phoneNum.length == 0
+              ? "please enter your number"
+              : newUserDetail.isPhoneNumCorrect &&
+                "please enter correct phone number"}
           </p>
         )}
-        <InputAndData
-          label="Password"
-          name="password"
-          type="password"
-          isPassword
-          className="p-2 border-black border mt-1 w-full rounded-md"
-          placeholder="Enter your password"
-          classData="mt-2.5 relative"
-          onChange={(e) => handleInput("password", e)}
-        />
-        {newUserDetail.isPassCorrect && (
-          <p className="text-red-300 mt-1">
-            {newUserDetail.password.length === 0
-              ? "please enter password"
-              : "Please atleast 8 chanracter long"}
-          </p>
-        )}
-        <InputAndData
-          label="Conform password"
-          name="Cpassword"
-          type="password"
-          isPassword
-          className="p-2 border-black border mt-1 w-full rounded-md"
-          placeholder="Enter password again"
-          classData="mt-2.5 relative"
-          onChange={(e) => handleInput("cPassword", e)}
-        />
-        {newUserDetail.isCPassCorrect && (
-          <p className="text-red-300 mt-1">
-            {newUserDetail.isCPassCorrect.length === 0
-              ? "please Conform your password"
-              : "Please enter same password as before"}
-          </p>
-        )}
+        <div className="grid grid-cols-2 gap-3 mt-2.5">
+          <div>
+            <InputAndData
+              label="Password"
+              name="password"
+              type="password"
+              isPassword
+              className="p-2 border-black border mt-1 w-full rounded-md"
+              placeholder="Enter your password"
+              classData=" relative"
+              onChange={(e) => handleInput("password", e)}
+            />
+            {newUserDetail.isPassCorrect && (
+              <p className="text-red-300 mt-1">
+                {newUserDetail.password.length === 0
+                  ? "please enter password"
+                  : "Please atleast 8 chanracter long"}
+              </p>
+            )}
+          </div>
+          <div>
+            <InputAndData
+              label="Conform password"
+              name="Cpassword"
+              type="password"
+              isPassword
+              className="p-2 border-black border mt-1 w-full rounded-md"
+              placeholder="Enter password again"
+              classData=" relative"
+              onChange={(e) => handleInput("cPassword", e)}
+            />
+            {newUserDetail.isCPassCorrect && (
+              <p className="text-red-300 mt-1">
+                {newUserDetail.isCPassCorrect.length === 0
+                  ? "please Conform your password"
+                  : "enter same password "}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="mt-2.5">
+          <label htmlFor="Address">Address(optional)</label>
+          <br />
+          <textarea
+            name="Address"
+            onChange={(e) => handleInput("address", e)}
+            id="Address"
+            className="p-2 border-black border appearance-none mt-1  w-full rounded-md"
+          ></textarea>
+        </div>
         <Button className="w-full mt-5" text="Sign In" />
       </form>
       <p className="mt-5">
-        Already Have an Account?,{" "}
+        Already Have an Account?,
+        {""}
         <NavLink
           to="/login"
           className="underline"

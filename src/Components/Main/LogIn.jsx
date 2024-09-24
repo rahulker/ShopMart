@@ -22,7 +22,7 @@ const LogIn = () => {
       isEmailCorrect: false,
       isPassCorrect: false,
     }));
-    if (userData.emailData.trim() === "" || userData.passData.trim() === "") {
+    if (userData.emailData.trim() === "" && userData.passData.trim() === "") {
       setUserData((state) => ({
         ...state,
         isPassCorrect: true,
@@ -38,7 +38,7 @@ const LogIn = () => {
       }));
       return;
     }
-    if (userData.passData.length < 8) {
+    if (userData.passData.length < 8 || userData.passData.trim() === "") {
       console.log("hello");
 
       setUserData((state) => ({
@@ -47,7 +47,7 @@ const LogIn = () => {
       }));
       return;
     }
-    if (!userData.emailData.includes("@")) {
+    if (!userData.emailData.includes("@") || userData.emailData.trim() === "") {
       setUserData((state) => ({
         ...state,
         isEmailCorrect: true,
@@ -67,7 +67,6 @@ const LogIn = () => {
       return;
     }
   }
-  console.log("Email check =>", userData.isEmailCorrect);
   return (
     <section className="flex flex-col items-center  mt-10">
       <div className="flex flex-col items-center">

@@ -1,7 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLogin: false,
+  isLogin: true,
   totalItemsInCart: 0,
   cart: {
     items: [],
@@ -10,7 +10,14 @@ const initialState = {
   userData: {
     userAlreadyExists: false,
     createUser: false,
-    userDetail: {},
+    userDetail: {
+      address: "12345 street",
+      email: "kerrahul@gmail.com",
+      id: 6863,
+      name: "rahul",
+      pass: "12345678",
+      phoneNum: "8160860886",
+    },
   },
 };
 

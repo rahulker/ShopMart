@@ -25,7 +25,7 @@ const Button = ({ text, className, type, isLinks, id, ...props }) => {
 export default Button;
 
 Button.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.any,
   className: PropTypes.string,
   type: PropTypes.string,
   isLinks: PropTypes.bool,

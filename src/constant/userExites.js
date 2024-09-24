@@ -8,9 +8,10 @@ import {
 export async function handleUserExites(id, userData, dispatch, navigate) {
   try {
     const allUsers = await handleGetUser();
-    const currentUser = allUsers.filter(
-      (item) => item.email === userData.email
-    );
+    const currentUser =
+      allUsers == null
+        ? 0
+        : allUsers.filter((item) => item.email === userData.email);
     if (currentUser.length > 0) {
       if (id === "login") {
         if (currentUser[0].email === userData.email) {
