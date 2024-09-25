@@ -7,12 +7,10 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
       allUsers == null
         ? 0
         : allUsers.filter((item) => item.email === userData.email);
+
     if (currentUser.length > 0) {
       if (id === "login") {
-        if (
-          currentUser[0].email === userData.email &&
-          currentUser[0].pass === userData.pass
-        ) {
+        if (currentUser[0].email === userData.email) {
           dispatch(handleUserData(currentUser[0]));
           dispatch(handleLogin());
           navigate("/user");
@@ -20,8 +18,9 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           return true;
         }
       }
+    } else {
       if (id === "signin") {
-        if (currentUser[0].email === userData.email) {
+        if (currentUser.length < 0 || currentUser.email === userData.email) {
           return true;
         } else {
           handleSendData(userData);
@@ -31,13 +30,6 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           return;
         }
       }
-    } else {
-      console.log(currentUser.length);
-      handleSendData(userData);
-      dispatch(handleUserData(userData));
-      dispatch(handleLogin());
-      navigate("/");
-      return;
     }
   } catch (error) {
     console.error("Error in handleUserExites:", error);

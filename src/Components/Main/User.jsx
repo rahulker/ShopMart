@@ -72,7 +72,12 @@ const User = () => {
   }
   return (
     <section className="mt-10 flex items-center flex-col">
-      {showDeleteModal && <DeleteModal />}
+      {showDeleteModal && (
+        <DeleteModal
+          userId={userData.id}
+          setShowDeleteModal={setShowDeleteModal}
+        />
+      )}
       <div className="flex items-center flex-col gap-1.5">
         <RxAvatar size={60} />
         <div>

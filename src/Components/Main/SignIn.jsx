@@ -96,7 +96,7 @@ const SignIn = () => {
       address: newUserDetail.address,
     };
     stateData = handleUserExites("signin", newUserdata, dispatch, navigate);
-    if (stateData == true) {
+    if (stateData.then((res) => res === true)) {
       setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
     }
   }
@@ -140,7 +140,7 @@ const SignIn = () => {
                 {newUserDetail.email.length == 0
                   ? "please enter email"
                   : stateData
-                  ? "Email already in use, place try to log in"
+                  ? "Email already in use"
                   : "Please enter correct email"}
               </p>
             )}

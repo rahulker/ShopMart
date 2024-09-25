@@ -1,17 +1,21 @@
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { links } from "../../constant/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RxAvatar } from "react-icons/rx";
-import { handleShowModal } from "../../Store/Store";
+import { handleLogin, handleShowModal } from "../../Store/Store";
 const NavBar = () => {
   const data = useSelector((state) => state.isLogin);
   const dispacth = useDispatch();
+  const navigate = useNavigate();
   const totalItemsInCart = useSelector((state) => state.totalItemsInCart);
-  const userData = useSelector((state) => state.userData);
   const normalClass =
     "font-light text-base text-sm hover:font-semibold transition-all";
   const activeCss = "font-semibold text-sm";
+  function handleLogOut() {
+    dispacth(handleLogin());
+    navigate("/");
+  }
   return (
     <nav className="md:p-4 md:py-2 p-2 flex items-center justify-evenly  bg-white drop-shadow-lg  ">
       <NavLink className="flex items-center gap-1" to="/">
@@ -48,15 +52,14 @@ const NavBar = () => {
         ))}
       </div>
       {data ? (
-        <NavLink to="/user" className="flex items-center gap-2">
-          <RxAvatar size={25} />
-          <div className="flex items-start flex-col">
-            <p className="text-base font-medium">Welcome</p>
-            <p className="text-sm font-normal -mt-1">
-              {userData.userDetail.name}
-            </p>
-          </div>
-        </NavLink>
+        <div className="flex items-center gap-5">
+          <NavLink to="/user" className="flex items-center gap-2">
+            <RxAvatar size={25} />
+          </NavLink>
+          <button className="hover:font-semibold" onClick={handleLogOut}>
+            Log out
+          </button>
+        </div>
       ) : (
         <NavLink
           to="/login"
