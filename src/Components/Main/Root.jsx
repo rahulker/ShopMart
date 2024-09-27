@@ -10,7 +10,7 @@ const Root = () => {
     <>
       {showModal && createPortal(<Modal />, document.getElementById("modal"))}
       <NavBar />
-      <div className="mx-[50px]">
+      <div className="lg:mx-[50px] mx-[20px]">
         <Outlet />
       </div>
       <Footer />

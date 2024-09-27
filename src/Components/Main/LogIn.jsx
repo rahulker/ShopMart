@@ -71,9 +71,11 @@ const LogIn = () => {
     <section className="flex flex-col items-center  mt-10">
       <div className="flex flex-col items-center">
         <RxAvatar size={60} />
-        <div className="mt-3">
-          <h2 className="font-semibold text-4xl">Welcome back to Shop Mart</h2>
-          <p className="font-normal tetx-2xl text-center mt-2">
+        <div className="mt-1.5 sm:mt-2 md:mt-3">
+          <h2 className="font-semibold xl:text-4xl text-lg sm:text-xl md:text-2xl text-center">
+            Welcome back to Shop Mart
+          </h2>
+          <p className="font-normal sm:text-lg text-base md:text-xl xl:text-2xl text-center mt-1 xl:mt-2">
             To continue please log in
           </p>
         </div>

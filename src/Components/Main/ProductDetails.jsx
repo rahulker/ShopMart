@@ -34,31 +34,40 @@ const ProductDetails = () => {
   }
   return (
     <div className="mt-10">
-      <div className="grid grid-cols-[20%_40%] gap-14 items-center justify-center">
+      <div className="grid xl:grid-cols-[20%_40%] lg:grid-cols-[20%_60%] grid-cols-1 lg:gap-14 gap-4 items-center justify-center">
         <div>
-          <img src={singleData?.image} alt={singleData?.title} />
+          <img
+            src={singleData?.image}
+            alt={singleData?.title}
+            className="w-1/2 sm:w-[40%] mx-auto lg:w-auto"
+          />
         </div>
         <div>
-          <h2 className="text-2xl font-medium">{singleData?.title}</h2>
-          <div className="flex items-center gap-20">
-            <p className="mt-5 text-xl">Category: {singleData?.category}</p>
-            <p className="mt-5 text-xl">price: ${singleData?.price}</p>
+          <h2 className="md:text-2xl text-lg font-medium">
+            {singleData?.title}
+          </h2>
+          <div className="flex flex-col md:flex-row lg:items-start xl:items-center md:items-center lg:flex-col xl:flex-row lg:gap-2 xl:gap-20 md:mt-5 mt-2.5 gap-1.5 sm:gap-3.5 md:gap-4">
+            <p className="md:text-xl">Category: {singleData?.category}</p>
+            <p className="md:text-xl">price: ${singleData?.price}</p>
           </div>
           <div className="mt-5">
-            <p className="text-base max-w-[600px]">{singleData?.description}</p>
+            <p className="md:text-base text-sm text-left w-auto ">
+              {singleData?.description}
+            </p>
           </div>
-          <div className="mt-10">
+          <div className="lg:mt-10 mt-4">
             <Button
               text="Buy Now"
-              className="w-1/3"
               onClick={() => handleAddToCartItem(singleData)}
             />
           </div>
         </div>
       </div>
-      <div className="mt-20">
-        <h2 className="text-4xl font-semibold">Suggested product</h2>
-        <div className="grid grid-cols-[300px_300px_300px_300px] gap-10 justify-between justify-items-center  mt-5">
+      <div className="md:mt-20 mt-5">
+        <h2 className="lg:text-4xl text-lg sm:text-xl  font-semibold">
+          Suggested product
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-10 justify-between justify-items-center mt-5 ">
           {suggest.slice(0, 4).map((item) => {
             return <Card item={item} key={item.id} />;
           })}

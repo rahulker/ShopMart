@@ -8,7 +8,9 @@ const Cart = () => {
 
   return (
     <section className="mt-10">
-      <h2 className="text-4xl font-semibold">Your Cart</h2>
+      <h2 className="lg:text-4xl text-lg sm:text-xl  font-semibold">
+        Your Cart
+      </h2>
       <div className="mt-10">
         {cartData.length <= 0 ? (
           <p className="text-center text-gray-500 text-xl">

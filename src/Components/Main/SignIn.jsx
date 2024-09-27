@@ -101,16 +101,20 @@ const SignIn = () => {
     }
   }
   return (
-    <div className="mt-10 flex justify-center items-center flex-col">
+    <div className="xl:mt-10 lg:mt-8 mt-2 sm:mt-4 md:mt-6 flex justify-center items-center flex-col">
       <div className="flex flex-col justify-center items-center">
         <RxAvatar size={60} />
         <div className="text-center">
-          <h2 className="text-4xl mt-3 font-semibold">Welcome to Shop Mart</h2>
-          <p className="text-xl mt-2">Sign In to create a account</p>
+          <h2 className="font-semibold xl:text-4xl text-lg sm:text-xl md:text-2xl text-center">
+            Welcome to Shop Mart
+          </h2>
+          <p className="font-normal sm:text-lg text-base md:text-xl xl:text-2xl text-center mt-1 xl:mt-2">
+            Sign In to create a account
+          </p>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="mt-4 min-w-80">
-        <div className="grid grid-cols-2 gap-3">
+      <form onSubmit={handleSubmit} className="mt-4 sm:!w-[500px] w-full ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 ">
           <div>
             <InputAndData
               label="Name"
@@ -163,7 +167,7 @@ const SignIn = () => {
                 "please enter correct phone number"}
           </p>
         )}
-        <div className="grid grid-cols-2 gap-3 mt-2.5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2.5">
           <div>
             <InputAndData
               label="Password"

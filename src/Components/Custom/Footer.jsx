@@ -12,9 +12,9 @@ const Footer = () => {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <footer className="bg-black text-white py-4 mt-10">
+    <footer className="bg-black  text-white py-4 mt-10">
       <div className="container mx-auto px-0">
-        <div className="flex flex-col md:flex-row md:justify-between">
+        <div className="flex flex-col md:flex-row md:justify-between px-[20px] lg:px-[50px]">
           <div className="mb-6 md:mb-0">
             <NavLink className="flex items-center gap-1" to="/">
               <CiShoppingCart size={50} />
