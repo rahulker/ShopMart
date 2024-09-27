@@ -27,8 +27,8 @@ const Modal = () => {
   return (
     <div className="modal__backdrop">
       <div className="modal__container">
-        <div className="grid grid-cols-[91%_5%] gap-6 items-center">
-          <div className="bg-[#F0F5FF] grid grid-cols-[5%_95%] items-center gap-2 px-2.5  lg:min-w-[400px]">
+        <div className="grid sm:grid-cols-[91%_5%] grid-cols-[auto_5%] gap-6 items-center">
+          <div className="bg-[#F0F5FF] grid grid-cols-[10%_auto] sm:grid-cols-[5%_93.5%] items-center gap-2 pl-2.5  lg:min-w-[400px]">
             <CiSearch size={25} />
             <span className="border-l border-gray-300">
               <input

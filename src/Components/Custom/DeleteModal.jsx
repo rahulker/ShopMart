@@ -14,10 +14,12 @@ const DeleteModal = ({ userId, setShowDeleteModal }) => {
     navigate("/");
   }
   return (
-    <div className="modal__backdrop flex flex-col justify-center items-center">
+    <div className="modal__backdrop flex flex-col px-3 justify-center items-center">
       <div className="modal__container">
-        <h2 className="capitalize text-2xl leading-8">are you sure?</h2>
-        <p className="text-lg mt-2">
+        <h2 className="capitalize text-lg md:text-2xl leading-8">
+          are you sure?
+        </h2>
+        <p className="md:text-lg text-sm mt-2">
           Are you sure, You want to do this action. Once it is done then it can
           {"'"}t be reverted
         </p>

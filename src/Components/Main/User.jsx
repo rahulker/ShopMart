@@ -9,7 +9,7 @@ import Button from "../Custom/Button";
 import { handleEditUser } from "../../constant/http";
 import { handleUserData } from "../../Store/Store";
 import DeleteModal from "../Custom/DeleteModal";
-let buttonStyle = "flex items-center gap-2 w-[100px]";
+let buttonStyle = "flex items-center gap-2 w-[105px]";
 const User = () => {
   const userData = useSelector((state) => state.userData.userDetail);
   const isLogin = useSelector((state) => state.isLogin);
@@ -84,7 +84,7 @@ const User = () => {
           <h2 className="text-2xl font-semibold">Welcome, {userData.name}</h2>
         </div>
         <form className="mt-3" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 items-center gap-10">
+          <div className="grid sm:grid-cols-2 items-center gap-2.5 sm:gap-10">
             <UserEditInput
               isEdit={isEdit}
               userData={userData.email}
@@ -116,7 +116,7 @@ const User = () => {
               </p>
             )}
           </div>
-          <div className="mt-4">
+          <div className="sm:mt-4 mt-2.5">
             <label className="text-xl">Address</label>
             {isEdit ? (
               <textarea
@@ -129,7 +129,7 @@ const User = () => {
             )}
           </div>
           <div className="mt-5 ">
-            <div className="flex justify-end gap-4 items-center">
+            <div className="flex sm:justify-end justify-center sm:gap-4 gap-2 items-center">
               <Button
                 text={isEdit ? "Submit" : [[<GoPencil key={1} />], "Edit"]}
                 className={isEdit ? buttonStyle + " !w-auto" : buttonStyle}

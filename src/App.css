@@ -57,3 +57,18 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+
+@media screen and (max-width: 640px) {
+  .modal__backdrop {
+    overflow: scroll;
+  }
+
+  .modal__container {
+    margin: 0;
+  }
+}
+@media screen and (max-width: 1023px) {
+  .modal__backdrop {
+    overflow: scroll;
+  }
+}

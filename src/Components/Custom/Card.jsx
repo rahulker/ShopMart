@@ -10,9 +10,11 @@ const Card = ({ item }) => {
         className="mx-auto  w-[200px] h-[200px] object-contain"
       />
       <div className="flex flex-col px-3 py-2 items-start gap-3">
-        <h2 className="md:text-xl text-lg des leading-[30px] ">{item.title}</h2>
+        <h2 className="md:text-xl w-[260px] sm:w-auto text-lg des leading-[30px] ">
+          {item.title}
+        </h2>
         <p>${item.price}</p>
-        <p className="des text-sm w-[256px] sm:w-auto leading-[18px]">
+        <p className="des text-sm w-[260px] sm:w-auto leading-[18px]">
           {item.description}
         </p>
         <Button isLinks id={item.id} text="View More" className=" w-full" />

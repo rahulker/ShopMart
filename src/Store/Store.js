@@ -70,6 +70,12 @@ const slice = createSlice({
     handleLogin: (state) => {
       state.isLogin = !state.isLogin;
     },
+    handleSetLocalUser: (state, action) => {
+      state.userData.userDetail = action.payload;
+    },
+    handleSetLocalCart: (state, action) => {
+      state.cart.items = action.payload;
+    },
   },
 });
 
