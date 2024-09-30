@@ -36,6 +36,8 @@ const slice = createSlice({
         (totale, item) => totale + item.quantity,
         0
       );
+      const cartDataToStore = JSON.stringify(state.cart.items);
+      localStorage.setItem("userCartData", cartDataToStore);
     },
     handleRemoveFromCart: (state, action) => {
       const updatedItems = [...state.cart.items];
@@ -60,6 +62,8 @@ const slice = createSlice({
         (totale, item) => totale + item.quantity,
         0
       );
+      const cartDataToStore = JSON.stringify(state.cart.items);
+      localStorage.setItem("userCartData", cartDataToStore);
     },
     handleShowModal: (state) => {
       state.showModal = !state.showModal;
@@ -88,5 +92,7 @@ export const {
   handleAddToCart,
   handleRemoveFromCart,
   handleUserData,
+  handleSetLocalUser,
   handleShowModal,
+  handleSetLocalCart,
 } = slice.actions;

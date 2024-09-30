@@ -88,7 +88,11 @@ const NavBar = () => {
           </div>
         </NavLink>
         <div className="flex items-center gap-4">
-          <CiSearch size={25} onClick={() => dispacth(handleShowModal())} />
+          <CiSearch
+            size={25}
+            onClick={() => dispacth(handleShowModal())}
+            className="cursor-pointer"
+          />
           {menu ? (
             <HiMiniXMark
               size={25}
