@@ -14,7 +14,7 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           dispatch(handleUserData(currentUser[0]));
           dispatch(handleLogin());
           navigate("/user");
-          localStorage.setItem("CurrentUserData", currentUser);
+          return false;
         } else {
           return true;
         }
@@ -28,8 +28,7 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           dispatch(handleUserData(userData));
           dispatch(handleLogin());
           navigate("/");
-          localStorage.setItem("CurrentUserData", userData);
-          return;
+          return false;
         }
       }
     }

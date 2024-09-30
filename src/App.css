@@ -72,3 +72,17 @@ input[type="number"]::-webkit-outer-spin-button {
     overflow: scroll;
   }
 }
+
+body {
+  position: relative;
+}
+
+.success-alert {
+  width: 300px;
+  padding: 20px;
+  border-radius: 8px;
+  background: #4caf50;
+  position: absolute;
+  right: 10px;
+  color: white;
+}

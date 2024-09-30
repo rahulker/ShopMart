@@ -8,31 +8,61 @@ import { useEffect } from "react";
 import {
   handleLogin,
   handleSetLocalCart,
+  handleSetLocalCount,
   handleSetLocalUser,
 } from "../../Store/Store";
+import Alert from "../Custom/Alert";
 const Root = () => {
+  const showAlert = useSelector((state) => state.showAlert);
   const showModal = useSelector((state) => state.showModal);
   const dispatch = useDispatch();
   useEffect(() => {
     function handleGetCurrentUser() {
-      const storeUserData = localStorage.getItem("currentUser");
+      const storeUserData = localStorage.getItem("CurrentUserData");
       const storeCartData = localStorage.getItem("userCartData");
-      if (storeUserData === null || storeCartData === null) {
-        console.log("hello world");
+      const storeTotalCount = localStorage.getItem("totalCount");
+      if (
+        storeUserData === null &&
+        storeCartData === null &&
+        (storeTotalCount === null || JSON.parse(storeTotalCount) == 0)
+      ) {
         return;
       } else {
-        dispatch(handleLogin());
-        dispatch(handleSetLocalUser(storeUserData));
-        const cartData = JSON.parse(storeCartData);
-        dispatch(handleSetLocalCart(cartData));
+        if (storeUserData === null) {
+          const cartData = JSON.parse(storeCartData);
+          const totalCount = JSON.parse(storeTotalCount);
+          dispatch(handleSetLocalCart(cartData));
+          dispatch(handleSetLocalCount(totalCount));
+          return;
+        } else if (
+          storeUserData.length > 0 &&
+          storeCartData === null &&
+          (storeTotalCount === null || JSON.parse(storeTotalCount) == 0)
+        ) {
+          dispatch(handleLogin());
+          const localUser = JSON.parse(storeUserData);
+          dispatch(handleSetLocalUser(localUser[0]));
+
+          return;
+        } else {
+          dispatch(handleLogin());
+          const localUser = JSON.parse(storeUserData);
+          const totalCount = JSON.parse(storeTotalCount);
+          const cartData = JSON.parse(storeCartData);
+          dispatch(handleSetLocalCount(totalCount));
+          dispatch(handleSetLocalUser(localUser));
+          dispatch(handleSetLocalCart(cartData));
+          return;
+        }
       }
     }
     handleGetCurrentUser();
-  }, [dispatch]);
+  });
   return (
     <>
       {showModal && createPortal(<Modal />, document.getElementById("modal"))}
       <NavBar />
+      {showAlert && <Alert />}
       <div className="lg:mx-[50px] mx-[20px]">
         <Outlet />
       </div>

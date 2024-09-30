@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { links } from "../../constant/data";
 import { useDispatch, useSelector } from "react-redux";
 import { RxAvatar } from "react-icons/rx";
-import { handleLogin, handleShowModal } from "../../Store/Store";
+import { handleLogOut, handleShowModal } from "../../Store/Store";
 import { HiMiniXMark } from "react-icons/hi2";
 import { useState } from "react";
 const NavBar = () => {
@@ -18,8 +18,8 @@ const NavBar = () => {
   const activeCss = "font-semibold text-sm";
   const menuStyle =
     "absolute flex flex-col items-center min-w-72 drop-shadow-lg  gap-4 h-screen bg-white px-6 transition-all pt-4 z-[100]";
-  function handleLogOut() {
-    dispacth(handleLogin());
+  function handleLogOutUser() {
+    dispacth(handleLogOut());
     navigate("/");
   }
   return (
@@ -63,7 +63,7 @@ const NavBar = () => {
             <NavLink to="/user" className="flex items-center gap-2">
               <RxAvatar size={25} />
             </NavLink>
-            <button className="hover:font-semibold" onClick={handleLogOut}>
+            <button className="hover:font-semibold" onClick={handleLogOutUser}>
               Log out
             </button>
           </div>
@@ -127,7 +127,7 @@ const NavBar = () => {
         </div>
         {data ? (
           <div className="flex flex-col items-center gap-5">
-            <button className="hover:font-semibold" onClick={handleLogOut}>
+            <button className="hover:font-semibold" onClick={handleLogOutUser}>
               Log out
             </button>
             <NavLink to="/user" className="flex items-center gap-2">

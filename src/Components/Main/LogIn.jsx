@@ -1,20 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleUserExites } from "../../constant/userExites";
 let fnData;
 const LogIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLogin = useSelector((state) => state.isLogin);
   const [userData, setUserData] = useState({
     emailData: "",
     passData: "",
     isPassCorrect: false,
     isEmailCorrect: false,
   });
+  useEffect(() => {
+    if (isLogin === true) {
+      navigate("/");
+    }
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
     setUserData((state) => ({

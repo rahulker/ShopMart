@@ -2,7 +2,7 @@ import Button from "./Button";
 import PropTypes from "prop-types";
 import { handleUserDelete } from "../../constant/http.js";
 import { useDispatch } from "react-redux";
-import { handleLogin } from "../../Store/Store.js";
+import { handleLogOut } from "../../Store/Store.js";
 import { useNavigate } from "react-router";
 const DeleteModal = ({ userId, setShowDeleteModal }) => {
   let buttonStyle = "flex items-center gap-2 w-[80px] justify-center";
@@ -10,7 +10,7 @@ const DeleteModal = ({ userId, setShowDeleteModal }) => {
   const navigate = useNavigate();
   function handleDeleteAndSendUser(id) {
     handleUserDelete(id);
-    dispatch(handleLogin());
+    dispatch(handleLogOut());
     navigate("/");
   }
   return (

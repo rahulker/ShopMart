@@ -1,15 +1,16 @@
 import { RxAvatar } from "react-icons/rx";
 import InputAndData from "../Custom/InputAndData";
 import Button from "../Custom/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleUserExites } from "../../constant/userExites";
 import { NavLink } from "react-router-dom";
 let newUserdata;
 let stateData;
 const SignIn = () => {
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.isLogin);
   const navigate = useNavigate();
   const [newUserDetail, setNewUserDetail] = useState({
     name: "",
@@ -23,6 +24,12 @@ const SignIn = () => {
     isPassCorrect: false,
     isCPassCorrect: false,
   });
+  useEffect(() => {
+    if (isLogin === true) {
+      navigate("/");
+    }
+  });
+
   function handleInput(id, e) {
     setNewUserDetail((state) => ({ ...state, [id]: e.target.value }));
   }
