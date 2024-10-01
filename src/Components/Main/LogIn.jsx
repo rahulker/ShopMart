@@ -66,7 +66,8 @@ const LogIn = () => {
       pass: userData.passData,
     };
     fnData = handleUserExites("login", newUserdata, dispatch, navigate);
-    if (fnData.then((res) => res === true)) {
+
+    if (fnData) {
       setUserData((state) => ({
         ...state,
         isEmailCorrect: true,

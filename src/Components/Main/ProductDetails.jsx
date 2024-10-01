@@ -63,7 +63,7 @@ const ProductDetails = () => {
           </div>
           <div className="lg:mt-10 mt-4">
             <Button
-              text="Buy Now"
+              text="Add to cart"
               onClick={() => handleAddToCartItem(singleData)}
             />
           </div>

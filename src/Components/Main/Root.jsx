@@ -40,7 +40,7 @@ const Root = () => {
         ) {
           dispatch(handleLogin());
           const localUser = JSON.parse(storeUserData);
-          dispatch(handleSetLocalUser(localUser[0]));
+          dispatch(handleSetLocalUser(localUser));
 
           return;
         } else {

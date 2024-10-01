@@ -13,6 +13,7 @@ let buttonStyle = "flex items-center gap-2 w-[105px]";
 const User = () => {
   const userData = useSelector((state) => state.userData.userDetail);
   const isLogin = useSelector((state) => state.isLogin);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);

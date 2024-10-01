@@ -16,7 +16,7 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           navigate("/user");
           return false;
         } else {
-          return true;
+          if (currentUser[0].email !== userData.email) return true;
         }
       }
     } else {

@@ -40,10 +40,10 @@ const CartItem = ({ item }) => {
       <div className="flex items-center justify-end md:justify-center gap-1.5 lg:gap-4 md:gap-2">
         <button
           type="button"
-          onClick={() => handleAddAndDelete("Add", item)}
+          onClick={() => handleAddAndDelete("Rmv", item)}
           className="px-4 py-2 bg-black rounded-full text-white hover:bg-white hover:text-black border border-black transition-colors"
         >
-          +
+          -
         </button>
         <p className="py-2 px-3 rounded-xl w-12 text-center border border-black ">
           {item.quantity}
@@ -51,10 +51,10 @@ const CartItem = ({ item }) => {
 
         <button
           type="button"
-          onClick={() => handleAddAndDelete("Rmv", item)}
+          onClick={() => handleAddAndDelete("Add", item)}
           className="px-4 py-2 bg-black rounded-full text-white hover:bg-white hover:text-black border border-black transition-colors"
         >
-          -
+          +
         </button>
       </div>
     </div>

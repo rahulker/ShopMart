@@ -6,7 +6,10 @@ const initialState = {
   cart: {
     items: [],
   },
-  Alert: { showAlert: false, alertMessage: "" },
+  Alert: {
+    showAlert: false,
+    alertMessage: "Successfuly add to cart",
+  },
   showModal: false,
   userData: {
     userDetail: {},
@@ -89,7 +92,6 @@ const slice = createSlice({
     },
     handleMakeAlert: (state) => {
       state.Alert.showAlert = !state.Alert.showAlert;
-      console.log(state.Alert.showAlert);
     },
     handleShowModal: (state) => {
       state.showModal = !state.showModal;
