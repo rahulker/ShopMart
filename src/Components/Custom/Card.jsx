@@ -9,11 +9,14 @@ const Card = ({ item }) => {
         alt={item.title}
         className="mx-auto  w-[200px] h-[200px] object-contain"
       />
-      <div className="flex flex-col px-3 py-2 items-start gap-3">
+      <div className="flex flex-col px-3 py-2 items-start gap-2.5">
         <h2 className="md:text-xl w-[260px] sm:w-auto text-lg des leading-[30px] ">
           {item.title}
         </h2>
-        <p>${item.price}</p>
+        <div className="flex items-start flex-col gap-1">
+          <p>Category: {item.category}</p>
+          <p>Price: ${item.price}</p>
+        </div>
         <p className="des text-sm w-[260px] sm:w-auto leading-[18px]">
           {item.description}
         </p>

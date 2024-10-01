@@ -88,7 +88,8 @@ const slice = createSlice({
       }
     },
     handleMakeAlert: (state) => {
-      state.showAlert = !state.showAlert;
+      state.Alert.showAlert = !state.Alert.showAlert;
+      console.log(state.Alert.showAlert);
     },
     handleShowModal: (state) => {
       state.showModal = !state.showModal;
@@ -137,4 +138,5 @@ export const {
   handleSetLocalCount,
   handleLogOut,
   handleMakeAlert,
+  handleAlertMessage,
 } = slice.actions;

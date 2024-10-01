@@ -17,7 +17,7 @@ const NavBar = () => {
     "font-light text-base text-sm hover:font-semibold transition-all";
   const activeCss = "font-semibold text-sm";
   const menuStyle =
-    "absolute flex flex-col items-center min-w-72 drop-shadow-lg  gap-4 h-screen bg-white px-6 transition-all pt-4 z-[100]";
+    "absolute flex flex-col items-center min-w-72 drop-shadow-lg  gap-4 h-screen bg-white px-6 transition-all pt-4 z-[100] lg:hidden";
   function handleLogOutUser() {
     dispacth(handleLogOut());
     navigate("/");

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouteLoaderData } from "react-router";
 import { handleSingleFetch } from "../../constant/http";
-import { handleAddToCart } from "../../Store/Store";
+import {
+  handleAddToCart,
+  handleAlertMessage,
+  handleMakeAlert,
+} from "../../Store/Store";
 import Button from "../Custom/Button";
 import { useDispatch } from "react-redux";
 import Card from "../Custom/Card";
@@ -31,6 +35,8 @@ const ProductDetails = () => {
   }, [id]);
   function handleAddToCartItem(data) {
     dispactch(handleAddToCart(data));
+    dispactch(handleMakeAlert());
+    dispactch(handleAlertMessage("Successfuly add to cart"));
   }
   return (
     <div className="mt-10">

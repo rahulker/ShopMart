@@ -13,7 +13,6 @@ import {
 } from "../../Store/Store";
 import Alert from "../Custom/Alert";
 const Root = () => {
-  const showAlert = useSelector((state) => state.showAlert);
   const showModal = useSelector((state) => state.showModal);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -58,11 +57,12 @@ const Root = () => {
     }
     handleGetCurrentUser();
   });
+
   return (
     <>
       {showModal && createPortal(<Modal />, document.getElementById("modal"))}
       <NavBar />
-      {showAlert && <Alert />}
+      <Alert />
       <div className="lg:mx-[50px] mx-[20px]">
         <Outlet />
       </div>

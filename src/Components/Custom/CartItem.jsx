@@ -1,5 +1,10 @@
 import { useDispatch } from "react-redux";
-import { handleAddToCart, handleRemoveFromCart } from "../../Store/Store";
+import {
+  handleAddToCart,
+  handleAlertMessage,
+  handleMakeAlert,
+  handleRemoveFromCart,
+} from "../../Store/Store";
 import PropTypes from "prop-types";
 
 const CartItem = ({ item }) => {
@@ -7,9 +12,13 @@ const CartItem = ({ item }) => {
   function handleAddAndDelete(identifier, data) {
     if (identifier === "Add") {
       dispatch(handleAddToCart(data));
+      dispatch(handleMakeAlert());
+      dispatch(handleAlertMessage("Successfuly updated cart"));
     }
     if (identifier === "Rmv") {
       dispatch(handleRemoveFromCart(data));
+      dispatch(handleMakeAlert());
+      dispatch(handleAlertMessage("Successfuly updated cart"));
     }
   }
   return (
