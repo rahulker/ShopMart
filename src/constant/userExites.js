@@ -9,28 +9,25 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
         : allUsers.filter((item) => item.email === userData.email);
 
     if (currentUser.length > 0) {
-      if (id === "login") {
+      if (id == "login") {
         if (currentUser[0].email === userData.email) {
           dispatch(handleUserData(currentUser[0]));
           dispatch(handleLogin());
           navigate("/user");
           return false;
         } else {
-          console.log("hello fail log in");
           return true;
         }
       }
     } else {
-      if (id === "signin") {
-        if (currentUser.length <= 0 || currentUser.email === userData.email) {
-          console.log("hello fail sign up");
+      if (id == "signin") {
+        if (currentUser.length <= 0 && currentUser.email == userData.email) {
           return true;
         } else {
           handleSendData(userData);
           dispatch(handleUserData(userData));
           dispatch(handleLogin());
           navigate("/");
-          console.log("hello sign up");
         }
       }
     }

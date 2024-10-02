@@ -11,6 +11,7 @@ const initialState = {
     alertMessage: "Successfuly add to cart",
   },
   showModal: false,
+  buyNowData: {},
   userData: {
     userDetail: {},
   },
@@ -65,8 +66,6 @@ const slice = createSlice({
 
       if (updatedItem.quantity <= 0) {
         localStorage.removeItem("userCartData");
-        console.log("hello");
-
         updatedItems.splice(updatedItemIndex, 1);
       } else {
         updatedItems[updatedItemIndex] = updatedItem;
@@ -122,6 +121,12 @@ const slice = createSlice({
     handleAlertMessage: (state, action) => {
       state.Alert.alertMessage = action.payload;
     },
+    handleSingleBuyNow: (state, action) => {
+      state.buyNowData = action.payload;
+    },
+    handleCartBuyNow: (state, action) => {
+      state.buyNowData = action.payload;
+    },
   },
 });
 
@@ -141,4 +146,5 @@ export const {
   handleLogOut,
   handleMakeAlert,
   handleAlertMessage,
+  handleSingleBuyNow,
 } = slice.actions;

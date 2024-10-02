@@ -70,7 +70,6 @@ const LogIn = () => {
       if (res !== undefined && res === true) {
         setUserData((state) => ({ ...state, isEmailCorrect: true }));
       }
-      console.log(res);
     });
   }
   return (

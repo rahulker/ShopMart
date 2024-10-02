@@ -107,7 +107,6 @@ const SignIn = () => {
       if (res !== undefined && res === true) {
         setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
       }
-      console.log(res);
     });
   }
   return (

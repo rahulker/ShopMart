@@ -10,6 +10,7 @@ import {
 import { handleProductData as loaderHomeData } from "./constant/http";
 import Root from "./Components/Main/Root";
 import SignIn from "./Components/Main/SignIn";
+import BuyNow from "./Components/Main/BuyNow";
 const App = () => {
   const routes = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const App = () => {
         {
           path: "/user",
           element: <User />,
+        },
+        {
+          path: "/buy-now",
+          element: <BuyNow />,
         },
       ],
     },

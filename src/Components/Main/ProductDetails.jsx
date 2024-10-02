@@ -3,8 +3,8 @@ import { useParams, useRouteLoaderData } from "react-router";
 import { handleSingleFetch } from "../../constant/http";
 import {
   handleAddToCart,
-  handleAlertMessage,
   handleMakeAlert,
+  handleSingleBuyNow,
 } from "../../Store/Store";
 import Button from "../Custom/Button";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,10 @@ const ProductDetails = () => {
   function handleAddToCartItem(data) {
     dispactch(handleAddToCart(data));
     dispactch(handleMakeAlert());
-    dispactch(handleAlertMessage("Successfuly add to cart"));
+  }
+  function handleBuyNow(data) {
+    dispactch(handleSingleBuyNow(data));
+    dispactch(handleAddToCart(data));
   }
   return (
     <div className="mt-10">
@@ -61,10 +64,17 @@ const ProductDetails = () => {
               {singleData?.description}
             </p>
           </div>
-          <div className="lg:mt-10 mt-4">
+          <div className="lg:mt-10 mt-4 flex items-center gap-4">
             <Button
               text="Add to cart"
               onClick={() => handleAddToCartItem(singleData)}
+            />
+            <Button
+              text="Buy now"
+              isLinks
+              otherLink
+              link="/buy-now"
+              onClick={() => handleBuyNow(singleData)}
             />
           </div>
         </div>
