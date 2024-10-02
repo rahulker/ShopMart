@@ -66,14 +66,12 @@ const LogIn = () => {
       pass: userData.passData,
     };
     fnData = handleUserExites("login", newUserdata, dispatch, navigate);
-
-    if (fnData) {
-      setUserData((state) => ({
-        ...state,
-        isEmailCorrect: true,
-      }));
-      return;
-    }
+    fnData.then((res) => {
+      if (res !== undefined && res === true) {
+        setUserData((state) => ({ ...state, isEmailCorrect: true }));
+      }
+      console.log(res);
+    });
   }
   return (
     <section className="flex flex-col items-center  mt-10">

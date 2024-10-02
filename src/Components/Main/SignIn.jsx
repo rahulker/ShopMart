@@ -103,9 +103,12 @@ const SignIn = () => {
       address: newUserDetail.address,
     };
     stateData = handleUserExites("signin", newUserdata, dispatch, navigate);
-    if (stateData.then((res) => res === true)) {
-      setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
-    }
+    stateData.then((res) => {
+      if (res !== undefined && res === true) {
+        setNewUserDetail((state) => ({ ...state, isEmailCorrect: true }));
+      }
+      console.log(res);
+    });
   }
   return (
     <div className="xl:mt-10 lg:mt-8 mt-2 sm:mt-4 md:mt-6 flex justify-center items-center flex-col">

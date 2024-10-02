@@ -16,22 +16,25 @@ export async function handleUserExites(id, userData, dispatch, navigate) {
           navigate("/user");
           return false;
         } else {
-          if (currentUser[0].email !== userData.email) return true;
+          console.log("hello fail log in");
+          return true;
         }
       }
     } else {
       if (id === "signin") {
-        if (currentUser.length < 0 || currentUser.email === userData.email) {
+        if (currentUser.length <= 0 || currentUser.email === userData.email) {
+          console.log("hello fail sign up");
           return true;
         } else {
           handleSendData(userData);
           dispatch(handleUserData(userData));
           dispatch(handleLogin());
           navigate("/");
-          return false;
+          console.log("hello sign up");
         }
       }
     }
+    return true;
   } catch (error) {
     console.error("Error in handleUserExites:", error);
   }
