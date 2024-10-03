@@ -130,6 +130,47 @@ const slice = createSlice({
     handleRmoveBuyNowData: (state) => {
       state.buyNowData = {};
     },
+    handleRemoveCartDataBuy: (state) => {
+      state.cart.items = [];
+      localStorage.removeItem("userCartData");
+      localStorage.removeItem("totalCount");
+      state.totalItemsInCart = 0;
+    },
+    handleRemoveSingleBuyItem: (state, action) => {
+      const updatedItems = [...state.cart.items];
+      const updatedItemIndex = updatedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      const updatedItem = {
+        ...updatedItems[updatedItemIndex],
+      };
+
+      updatedItem.quantity -= 1;
+      if (updatedItem.quantity <= 0) {
+        updatedItems.splice(updatedItemIndex, 1);
+      } else {
+        updatedItems[updatedItemIndex] = updatedItem;
+      }
+
+      state.cart.items = updatedItems;
+      state.totalItemsInCart = updatedItems.reduce(
+        (totale, item) => totale + item.quantity,
+        0
+      );
+      const cartDataToStore = JSON.stringify(state.cart.items);
+      if (state.cart.items.length > 0) {
+        localStorage.setItem("userCartData", cartDataToStore);
+      }
+      if (state.totalItemsInCart <= 0) {
+        localStorage.removeItem("totalCount");
+      } else {
+        localStorage.setItem(
+          "totalCount",
+          JSON.stringify(state.totalItemsInCart)
+        );
+      }
+    },
   },
 });
 
@@ -151,4 +192,7 @@ export const {
   handleAlertMessage,
   handleSingleBuyNow,
   handleRmoveBuyNowData,
+  handleCartBuyNow,
+  handleRemoveSingleBuyItem,
+  handleRemoveCartDataBuy,
 } = slice.actions;

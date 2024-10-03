@@ -2,9 +2,9 @@ import { handleGetUser, handleSendData } from "./http";
 import { handleUserData, handleLogin } from "../Store/Store";
 export async function handleUserExites(id, userData, dispatch, navigate) {
   try {
-    const allUse₹= await handleGetUser();
+    const allUsers = await handleGetUser();
     const currentUser =
-      allUse₹== null
+      allUsers == null
         ? 0
         : allUsers.filter((item) => item.email === userData.email);
 

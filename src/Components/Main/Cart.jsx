@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../Custom/CartItem";
-
+import Button from "../Custom/Button";
+import { handleCartBuyNow } from "../../Store/Store";
 const Cart = () => {
   const cartData = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
   let total = 0;
-  cartData.map((item) => (total += item.price * item.quantity));
+  cartData.map((item) => (total += item.price * item.quantity), 0);
+  function handleBuyNow(data) {
+    dispatch(handleCartBuyNow(data));
+  }
 
   return (
     <section className="mt-10">
@@ -23,9 +28,19 @@ const Cart = () => {
                 <CartItem item={item} key={item.id} />
               ))}
             </div>
-            <div className="mt-10 border-t text-right pt-4 pr-4">
+            <div className="mt-10 border-t  pt-4 pr-4 flex items-center justify-end gap-5">
+              <Button
+                text="Buy Now"
+                className="py-2"
+                isLinks
+                otherLink
+                link="/buy-now"
+                onClick={() => handleBuyNow(cartData)}
+              />
               <p>
-                <span className="text-gray-600">Total Price: ₹{total}</span>
+                <span className="text-gray-600">
+                  Total Price: ₹{total.toFixed(2)}
+                </span>
               </p>
             </div>
           </>
