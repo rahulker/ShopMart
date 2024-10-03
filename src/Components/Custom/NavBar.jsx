@@ -72,7 +72,7 @@ const NavBar = () => {
             to="/login"
             onClick={window.scrollTo(0, 0)}
             className={({ isActive }) =>
-              isActive ? `${activeCss} text-base` : `${normalClass} text-base`
+              isActive ? `₹{activeCss} text-base` : `₹{normalClass} text-base`
             }
           >
             Log in
@@ -139,7 +139,7 @@ const NavBar = () => {
             to="/login"
             onClick={window.scrollTo(0, 0)}
             className={({ isActive }) =>
-              isActive ? `${activeCss} text-base` : `${normalClass} text-base`
+              isActive ? `₹{activeCss} text-base` : `₹{normalClass} text-base`
             }
           >
             Log in

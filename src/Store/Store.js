@@ -127,6 +127,9 @@ const slice = createSlice({
     handleCartBuyNow: (state, action) => {
       state.buyNowData = action.payload;
     },
+    handleRmoveBuyNowData: (state) => {
+      state.buyNowData = {};
+    },
   },
 });
 
@@ -147,4 +150,5 @@ export const {
   handleMakeAlert,
   handleAlertMessage,
   handleSingleBuyNow,
+  handleRmoveBuyNowData,
 } = slice.actions;

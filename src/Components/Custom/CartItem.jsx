@@ -34,7 +34,7 @@ const CartItem = ({ item }) => {
         </h2>
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-5 gap-2.5 ">
           <p className="text-xl font-medium">category: {item.category}</p>
-          <p className="text-xl font-medium">price: ${item.price}</p>
+          <p className="text-xl font-medium">price: ₹{item.price}</p>
         </div>
       </div>
       <div className="flex items-center justify-end md:justify-center gap-1.5 lg:gap-4 md:gap-2">

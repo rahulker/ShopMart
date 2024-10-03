@@ -25,6 +25,10 @@ const ProductDetails = () => {
     }
     handleSuggest();
   }, [singleData, res]);
+  function handleBuyNow(data) {
+    dispactch(handleSingleBuyNow(data));
+    dispactch(handleAddToCart(data));
+  }
 
   useEffect(() => {
     async function fetchedData() {
@@ -37,10 +41,7 @@ const ProductDetails = () => {
     dispactch(handleAddToCart(data));
     dispactch(handleMakeAlert());
   }
-  function handleBuyNow(data) {
-    dispactch(handleSingleBuyNow(data));
-    dispactch(handleAddToCart(data));
-  }
+
   return (
     <div className="mt-10">
       <div className="grid xl:grid-cols-[20%_40%] lg:grid-cols-[20%_60%] grid-cols-1 lg:gap-14 gap-4 items-center justify-center">
@@ -57,7 +58,7 @@ const ProductDetails = () => {
           </h2>
           <div className="flex flex-col md:flex-row lg:items-start xl:items-center md:items-center lg:flex-col xl:flex-row lg:gap-2 xl:gap-20 md:mt-5 mt-2.5 gap-1.5 sm:gap-3.5 md:gap-4">
             <p className="md:text-xl">Category: {singleData?.category}</p>
-            <p className="md:text-xl">price: ${singleData?.price}</p>
+            <p className="md:text-xl">price: ₹{singleData?.price}</p>
           </div>
           <div className="mt-5">
             <p className="md:text-base text-sm text-left w-auto ">

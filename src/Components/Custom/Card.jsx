@@ -15,7 +15,7 @@ const Card = ({ item }) => {
         </h2>
         <div className="flex items-start flex-col gap-1">
           <p>Category: {item.category}</p>
-          <p>Price: ${item.price}</p>
+          <p>Price: ₹{item.price}</p>
         </div>
         <p className="des text-sm w-[260px] sm:w-auto leading-[18px]">
           {item.description}

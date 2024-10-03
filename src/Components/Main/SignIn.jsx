@@ -225,6 +225,11 @@ const SignIn = () => {
             id="Address"
             className="p-2 border-black border appearance-none mt-1  w-full rounded-md"
           ></textarea>
+          {newUserDetail.address.trim().length === 0 ? (
+            <p className="text-red-300 mt-1">please enter your address</p>
+          ) : (
+            <></>
+          )}
         </div>
         <Button className="w-full mt-5" text="Sign In" />
       </form>

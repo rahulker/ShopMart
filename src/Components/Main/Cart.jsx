@@ -25,7 +25,7 @@ const Cart = () => {
             </div>
             <div className="mt-10 border-t text-right pt-4 pr-4">
               <p>
-                <span className="text-gray-600">Total Price: ${total}</span>
+                <span className="text-gray-600">Total Price: ₹{total}</span>
               </p>
             </div>
           </>
