@@ -20,11 +20,11 @@ const Alert = ({ className }) => {
 
   return (
     <div
-      className={`${className} success-alert transition-all ${
-        showAlert ? "translate-x-0 " : "translate-x-[200%] "
+      className={`${className} success-alert !min-w-[280px] transition-all ${
+        showAlert ? "translate-x-0 " : "translate-x-[120%]"
       }`}
     >
-      <p className="flex items-center gap-2">
+      <p className="flex items-center  gap-2">
         <CiCircleCheck size={24} />
         {message}
       </p>

@@ -23,6 +23,7 @@ const SignIn = () => {
     isEmailCorrect: false,
     isPassCorrect: false,
     isCPassCorrect: false,
+    isAddressEnter: true,
   });
   useEffect(() => {
     if (isLogin === true) {
@@ -39,6 +40,8 @@ const SignIn = () => {
       ...state,
       isEmailCorrect: false,
       isPassCorrect: false,
+      isPhoneNumCorrect: false,
+      isAddressEnter: true,
       isCPassCorrect: false,
     }));
     if (
@@ -46,7 +49,8 @@ const SignIn = () => {
       newUserDetail.name.trim() === "" &&
       newUserDetail.password.trim() === "" &&
       newUserDetail.cPassword.trim() === "" &&
-      newUserDetail.phoneNum.trim() === ""
+      newUserDetail.phoneNum.trim() === "" &&
+      newUserDetail.address.trim() === ""
     ) {
       setNewUserDetail((state) => ({
         ...state,
@@ -54,6 +58,7 @@ const SignIn = () => {
         isPassCorrect: true,
         isCPassCorrect: true,
         isPhoneNumCorrect: true,
+        isAddressEnter: false,
       }));
       return;
     }
@@ -66,6 +71,12 @@ const SignIn = () => {
         isCPassCorrect: true,
       }));
       return;
+    }
+    if (newUserDetail.address.trim().length <= 0) {
+      setNewUserDetail((state) => ({
+        ...state,
+        isAddressEnter: false,
+      }));
     }
     if (!newUserDetail.email.includes("@")) {
       setNewUserDetail((state) => ({
@@ -85,7 +96,7 @@ const SignIn = () => {
       return;
     }
     if (
-      newUserDetail.phoneNum.length <= 9 ||
+      newUserDetail.phoneNum.length < 9 ||
       !newUserDetail.phoneNum.trim() === ""
     ) {
       setNewUserDetail((state) => ({
@@ -225,10 +236,14 @@ const SignIn = () => {
             id="Address"
             className="p-2 border-black border appearance-none mt-1  w-full rounded-md"
           ></textarea>
-          {newUserDetail.address.trim().length === 0 ? (
-            <p className="text-red-300 mt-1">please enter your address</p>
-          ) : (
-            <></>
+          {!newUserDetail.isAddressEnter && (
+            <p className="text-red-300 mt-1">
+              {newUserDetail.address.trim().length === 0 ? (
+                "please enter your address"
+              ) : (
+                <></>
+              )}
+            </p>
           )}
         </div>
         <Button className="w-full mt-5" text="Sign In" />

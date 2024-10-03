@@ -43,42 +43,84 @@ const BuyNow = () => {
   }
 
   return (
-    <section className="mt-10">
-      <div className="grid grid-cols-[60%_auto] gap-5">
-        <div>
-          {isArray && <h2 className="mb-2 text-xl">List of product</h2>}
-          <div className="flex items-center flex-col gap-4 max-h-[600px] overflow-y-scroll">
-            {content}
+    <>
+      <section className="mt-10 hidden lg:block">
+        <div className="grid grid-cols-[60%_auto] gap-5">
+          <div>
+            {isArray && <h2 className="mb-2 text-xl">List of product</h2>}
+            <div className="flex items-center flex-col gap-4 max-h-[600px] overflow-y-scroll">
+              {content}
+            </div>
+          </div>
+          <div>
+            <h2 className="text-2xl">Deliver To:</h2>
+            <div className="ml-4 mt-4">
+              <p className="text-xl capitalize">Name: {userData.name}</p>
+              <p className="text-xl capitalize mt-2">
+                Phone number: {userData.phoneNum}
+              </p>
+              <p className="text-xl mt-2">Email: {userData.email}</p>
+              <p className="text-xl mt-2">Address: {userData.address}</p>
+            </div>
+            <div className="flex items-center gap-5 ml-4 mt-8">
+              <p>Total Price: ₹{totalPrize.toFixed(2)}</p>
+              <Button
+                text="Pay Now"
+                onClick={
+                  isArray
+                    ? () => {
+                        buyCart();
+                      }
+                    : () => {
+                        handleBuySingleItem(buyNowData);
+                      }
+                }
+              />
+            </div>
           </div>
         </div>
-        <div>
-          <h2 className="text-2xl">Deliver To:</h2>
-          <div className="ml-4 mt-4">
-            <p className="text-xl capitalize">Name: {userData.name}</p>
-            <p className="text-xl capitalize mt-2">
-              Phone number: {userData.phoneNum}
-            </p>
-            <p className="text-xl mt-2">Email: {userData.email}</p>
-            <p className="text-xl mt-2">Address: {userData.address}</p>
+      </section>
+      <section className="mt-10 lg:hidden">
+        <div className="grid grid-cols-1 gap-5">
+          <div>
+            <h2 className="text-2xl">Deliver To:</h2>
+            <div className="mt-4">
+              <p className="text-lg capitalize">Name: {userData.name}</p>
+              <p className="text-lg capitalize mt-2">
+                Phone number: {userData.phoneNum}
+              </p>
+              <p className="text-lg mt-2">Email: {userData.email}</p>
+              <p className="text-lg mt-2">Address: {userData.address}</p>
+            </div>
+            <div className="flex sm:items-center items-start flex-col sm:flex-row gap-2.5 sm:gap-5 sm:mt-4 mt-2 md:mt-8">
+              <p>Total Price: ₹{totalPrize.toFixed(2)}</p>
+              <Button
+                text="Pay Now"
+                onClick={
+                  isArray
+                    ? () => {
+                        buyCart();
+                      }
+                    : () => {
+                        handleBuySingleItem(buyNowData);
+                      }
+                }
+              />
+            </div>
           </div>
-          <div className="flex items-center gap-5 ml-4 mt-8">
-            <p>Total Price: ₹{totalPrize.toFixed(2)}</p>
-            <Button
-              text="Pay Now"
-              onClick={
-                isArray
-                  ? () => {
-                      buyCart();
-                    }
-                  : () => {
-                      handleBuySingleItem(buyNowData);
-                    }
-              }
-            />
+          <div>
+            {isArray && <h2 className="mb-2 text-xl">List of product</h2>}
+            <div
+              className={`grid items-center grid-cols-1 ${
+                isArray ? "sm:grid-cols-2" : ""
+              }  gap-4 max-h-[600px] overflow-y-scroll`}
+            >
+              {content}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

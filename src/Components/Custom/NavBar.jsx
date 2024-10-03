@@ -14,7 +14,7 @@ const NavBar = () => {
   const totalItemsInCart = useSelector((state) => state.totalItemsInCart);
   const [menu, setMenu] = useState(false);
   const normalClass =
-    "font-light text-base text-sm hover:font-semibold transition-all";
+    "font-light text-base text-sm hover:font-semibold transition-all ";
   const activeCss = "font-semibold text-sm";
   const menuStyle =
     "absolute flex flex-col items-center min-w-72 drop-shadow-lg  gap-4 h-screen bg-white px-6 transition-all pt-4 z-[100] lg:hidden";
@@ -72,7 +72,9 @@ const NavBar = () => {
             to="/login"
             onClick={window.scrollTo(0, 0)}
             className={({ isActive }) =>
-              isActive ? `₹{activeCss} text-base` : `₹{normalClass} text-base`
+              isActive
+                ? `${activeCss} text-base`
+                : `${normalClass} text-base hover:font-semibold`
             }
           >
             Log in
@@ -139,7 +141,9 @@ const NavBar = () => {
             to="/login"
             onClick={window.scrollTo(0, 0)}
             className={({ isActive }) =>
-              isActive ? `₹{activeCss} text-base` : `₹{normalClass} text-base`
+              isActive
+                ? `${activeCss} text-base`
+                : `${normalClass} hover:font-semibold text-base`
             }
           >
             Log in

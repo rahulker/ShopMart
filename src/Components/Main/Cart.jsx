@@ -28,10 +28,10 @@ const Cart = () => {
                 <CartItem item={item} key={item.id} />
               ))}
             </div>
-            <div className="mt-10 border-t  pt-4 pr-4 flex items-center justify-end gap-5">
+            <div className="lg:mt-10 sm:mt-5 mt-2.5 md:mt-8 border-t pt-4 pr-4 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-end gap-2.5 sm;gap-5">
               <Button
                 text="Buy Now"
-                className="py-2"
+                className="py-2 mt-2"
                 isLinks
                 otherLink
                 link="/buy-now"
