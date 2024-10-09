@@ -61,6 +61,14 @@ const Home = () => {
             type="button"
             ref={navigationNextRef}
           />
+          {/* <button
+            className="py-3 text-center px-4 bg-black text-white hover:text-black hover:bg-white rounded-xl hover:drop-shadow-lg border border-black transition-all"
+            type="button"
+            ref={navigationNextRef}
+          >
+            {" "}
+            <FaChevronRight />
+          </button> */}
         </div>
       </div>
       <div className="lg:mx-[50px] mx-[20px] mt-10">

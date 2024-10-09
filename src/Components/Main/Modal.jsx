@@ -25,7 +25,7 @@ const Modal = () => {
   });
 
   return (
-    <div className="modal__backdrop">
+    <div className="modal__backdrop !z-[100]">
       <div className="modal__container">
         <div className="grid sm:grid-cols-[91%_5%] grid-cols-[auto_5%] gap-6 items-center">
           <div className="bg-[#F0F5FF] grid grid-cols-[10%_auto] sm:grid-cols-[5%_93.5%] items-center gap-2 pl-2.5  lg:min-w-[400px]">
@@ -49,27 +49,26 @@ const Modal = () => {
         </div>
         <div className="mt-4">
           {searchDataArr.length > 0
-            ? searchDataArr
-                .slice(0, 5)
-                .map((item) => (
-                  <SearchItem
-                    item={item}
-                    key={item.id}
-                    onChange={setSearchData}
-                    dispacth={dispacth}
-                    handleShowModal={handleShowModal}
-                  />
-                ))
-            : data
-                .slice(0, 5)
-                .map((item) => (
+            ? searchDataArr.slice(0, 5).map((item) => {
+                return (
                   <SearchItem
                     item={item}
                     key={item.id}
                     dispacth={dispacth}
                     handleShowModal={handleShowModal}
                   />
-                ))}
+                );
+              })
+            : data.slice(0, 5).map((item) => {
+                return (
+                  <SearchItem
+                    item={item}
+                    key={item.id}
+                    dispacth={dispacth}
+                    handleShowModal={handleShowModal}
+                  />
+                );
+              })}
         </div>
       </div>
     </div>

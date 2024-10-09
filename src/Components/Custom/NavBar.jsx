@@ -54,7 +54,11 @@ const NavBar = () => {
               onClick={window.scrollTo(0, 0)}
             >
               {item.name}
-              {item.name === "Cart" ? <>({totalItemsInCart})</> : <></>}
+              {item.name === "Cart" ? (
+                <>({totalItemsInCart ? totalItemsInCart : 0})</>
+              ) : (
+                <></>
+              )}
             </NavLink>
           ))}
         </div>
@@ -123,7 +127,11 @@ const NavBar = () => {
               }}
             >
               {item.name}
-              {item.name === "Cart" ? <>({totalItemsInCart})</> : <></>}
+              {item.name === "Cart" ? (
+                <>({totalItemsInCart ? totalItemsInCart : 0})</>
+              ) : (
+                <></>
+              )}
             </NavLink>
           ))}
         </div>

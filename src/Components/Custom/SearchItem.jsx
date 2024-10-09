@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const SearchItem = ({ item, dispacth, handleShowModal }) => {
   return (
     <NavLink
-      to={`/product/₹{item.id}`}
+      to={`/product/${item.id}`}
       key={item.id}
       onClick={() => dispacth(handleShowModal())}
       className="lg:mt-5 mt-2 border-black border py-2 px-4 rounded-lg grid sm:grid-cols-[10%_auto] md:grid-cols-[10%_auto] grid-cols-1 gap-5 hover:shadow-lg hover:transition-shadow"
