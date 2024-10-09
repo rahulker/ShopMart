@@ -9,6 +9,7 @@ import Button from "../Custom/Button";
 import { handleEditUser } from "../../constant/http";
 import { handleUserData } from "../../Store/Store";
 import DeleteModal from "../Custom/DeleteModal";
+import { createPortal } from "react-dom";
 let buttonStyle = "flex items-center gap-2 w-[105px]";
 const User = () => {
   const userData = useSelector((state) => state.userData.userDetail);
@@ -72,13 +73,15 @@ const User = () => {
     dispatch(handleUserData(userDataToSend));
   }
   return (
-    <section className="mt-10 flex items-center flex-col">
-      {showDeleteModal && (
-        <DeleteModal
-          userId={userData.id}
-          setShowDeleteModal={setShowDeleteModal}
-        />
-      )}
+    <section className="mt-10 flex lg:mx-[50px] mx-[20px] items-center flex-col">
+      {showDeleteModal &&
+        createPortal(
+          <DeleteModal
+            userId={userData.id}
+            setShowDeleteModal={setShowDeleteModal}
+          />,
+          document.getElementById("modal")
+        )}
       <div className="flex items-center flex-col gap-1.5">
         <RxAvatar size={60} />
         <div>

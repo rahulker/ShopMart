@@ -12,7 +12,7 @@ const Cart = () => {
   }
 
   return (
-    <section className="mt-10">
+    <section className="mt-10 lg:mx-[50px] mx-[20px]">
       <h2 className="lg:text-4xl text-lg sm:text-xl  font-semibold">
         Your Cart
       </h2>
@@ -28,7 +28,7 @@ const Cart = () => {
                 <CartItem item={item} key={item.id} />
               ))}
             </div>
-            <div className="lg:mt-10 sm:mt-5 mt-2.5 md:mt-8 border-t pt-4 pr-4 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-end gap-2.5 sm;gap-5">
+            <div className="lg:mt-10 sm:mt-5 mt-2.5 md:mt-8 border-t pt-4 pr-4 flex flex-col-reverse sm:flex-row items-start sm:items-center justify-end gap-2.5 sm:gap-5">
               <Button
                 text="Buy Now"
                 className="py-2 mt-2"

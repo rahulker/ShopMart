@@ -121,7 +121,7 @@ const SignIn = () => {
     });
   }
   return (
-    <div className="xl:mt-10 lg:mt-8 mt-2 sm:mt-4 md:mt-6 flex justify-center items-center flex-col">
+    <div className="xl:mt-10 lg:mt-8 mt-2 sm:mt-4 md:mt-6 flex justify-center items-center flex-col lg:mx-[50px] mx-[20px]">
       <div className="flex flex-col justify-center items-center">
         <RxAvatar size={60} />
         <div className="text-center">

@@ -73,7 +73,7 @@ const LogIn = () => {
     });
   }
   return (
-    <section className="flex flex-col items-center  mt-10">
+    <section className="flex flex-col items-center  mt-10 lg:mx-[50px] mx-[20px]">
       <div className="flex flex-col items-center">
         <RxAvatar size={60} />
         <div className="mt-1.5 sm:mt-2 md:mt-3">

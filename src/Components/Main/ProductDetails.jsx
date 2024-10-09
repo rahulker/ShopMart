@@ -43,7 +43,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 lg:mx-[50px] mx-[20px]">
       <div className="grid xl:grid-cols-[20%_40%] lg:grid-cols-[20%_60%] grid-cols-1 lg:gap-14 gap-4 items-center justify-center">
         <div>
           <img

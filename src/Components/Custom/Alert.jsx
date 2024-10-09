@@ -21,7 +21,7 @@ const Alert = ({ className }) => {
   return (
     <div
       className={`${className} success-alert !min-w-[280px] transition-all ${
-        showAlert ? "translate-x-0 " : "translate-x-[120%]"
+        showAlert ? "right-2.5" : "-right-full"
       }`}
     >
       <p className="flex items-center  gap-2">

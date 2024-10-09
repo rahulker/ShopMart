@@ -63,7 +63,7 @@ const Root = () => {
       {showModal && createPortal(<Modal />, document.getElementById("modal"))}
       <NavBar />
       <Alert />
-      <div className="lg:mx-[50px] mx-[20px]">
+      <div>
         <Outlet />
       </div>
       <Footer />

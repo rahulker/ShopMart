@@ -44,7 +44,7 @@ const BuyNow = () => {
 
   return (
     <>
-      <section className="mt-10 hidden lg:block">
+      <section className="mt-10 hidden lg:block lg:mx-[50px] mx-[20px]">
         <div className="grid grid-cols-[60%_auto] gap-5">
           <div>
             {isArray && <h2 className="mb-2 text-xl">List of product</h2>}
@@ -80,7 +80,7 @@ const BuyNow = () => {
           </div>
         </div>
       </section>
-      <section className="mt-10 lg:hidden">
+      <section className="mt-10 lg:hidden lg:mx-[50px] mx-[20px]">
         <div className="grid grid-cols-1 gap-5">
           <div>
             <h2 className="text-2xl">Deliver To:</h2>

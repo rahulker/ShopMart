@@ -27,7 +27,7 @@ const Product = () => {
   }
 
   return (
-    <section className="mt-10">
+    <section className="mt-10 lg:mx-[50px] mx-[20px]">
       <div className="flex sm:items-center flex-col sm:flex-row gap-4 md:gap-0 justify-between">
         <h2 className="text-3xl font-semibold">Product</h2>
         <div className="border px-2 gap-2 py-2 border-black rounded-lg md:w-auto flex items-center w-fit">
