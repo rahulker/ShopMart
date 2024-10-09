@@ -140,12 +140,16 @@ const SignIn = () => {
               label="Name"
               name="name"
               type="text"
-              className={`p-2 border-black border mt-1 w-full rounded-md`}
+              className={`p-2 ${
+                newUserDetail.isEmailCorrect
+                  ? newUserDetail.name.length === 0 && "border-red-300"
+                  : "border-black"
+              }  border mt-1 w-full rounded-md`}
               placeholder="Enter your name"
               onChange={(e) => handleInput("name", e)}
             />
             {newUserDetail.isEmailCorrect && (
-              <p className="text-red-300 mt-1">
+              <p className="text-red-300 mt-1 text-sm">
                 {newUserDetail.name.length == 0 && "please enter name"}
               </p>
             )}
@@ -162,7 +166,7 @@ const SignIn = () => {
               onChange={(e) => handleInput("email", e)}
             />
             {newUserDetail.isEmailCorrect && (
-              <p className="text-red-300 mt-1">
+              <p className="text-red-300 mt-1 text-sm">
                 {newUserDetail.email.length == 0
                   ? "please enter email"
                   : stateData
@@ -184,7 +188,7 @@ const SignIn = () => {
           onChange={(e) => handleInput("phoneNum", e)}
         />
         {newUserDetail.isPhoneNumCorrect && (
-          <p className="text-red-300 mt-1">
+          <p className="text-red-300 mt-1 text-sm">
             {newUserDetail.phoneNum.length == 0
               ? "please enter your number"
               : newUserDetail.isPhoneNumCorrect &&
@@ -206,7 +210,7 @@ const SignIn = () => {
               onChange={(e) => handleInput("password", e)}
             />
             {newUserDetail.isPassCorrect && (
-              <p className="text-red-300 mt-1">
+              <p className="text-red-300 mt-1 text-sm">
                 {newUserDetail.password.length === 0
                   ? "please enter password"
                   : "Please atleast 8 chanracter long"}
@@ -227,7 +231,7 @@ const SignIn = () => {
               onChange={(e) => handleInput("cPassword", e)}
             />
             {newUserDetail.isCPassCorrect && (
-              <p className="text-red-300 mt-1">
+              <p className="text-red-300 mt-1 text-sm">
                 {newUserDetail.isCPassCorrect.length === 0
                   ? "please Conform your password"
                   : "enter same password "}
@@ -247,7 +251,7 @@ const SignIn = () => {
             } border-black border appearance-none mt-1  w-full rounded-md`}
           ></textarea>
           {!newUserDetail.isAddressEnter && (
-            <p className="text-red-300 mt-1">
+            <p className="text-red-300 mt-1 text-sm">
               {newUserDetail.address.trim().length === 0 ? (
                 "please enter your address"
               ) : (
