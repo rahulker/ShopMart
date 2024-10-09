@@ -46,8 +46,6 @@ const LogIn = () => {
       return;
     }
     if (userData.passData.length < 8 || userData.passData.trim() === "") {
-      console.log("hello");
-
       setUserData((state) => ({
         ...state,
         isPassCorrect: true,
