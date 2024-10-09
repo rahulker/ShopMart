@@ -140,7 +140,7 @@ const SignIn = () => {
               label="Name"
               name="name"
               type="text"
-              className="p-2 border-black border mt-1 w-full rounded-md"
+              className={`p-2 border-black border mt-1 w-full rounded-md`}
               placeholder="Enter your name"
               onChange={(e) => handleInput("name", e)}
             />
@@ -155,7 +155,9 @@ const SignIn = () => {
               label="Email"
               name="email"
               type="email"
-              className="p-2 border-black border mt-1 w-full rounded-md"
+              className={`p-2 ${
+                newUserDetail.isEmailCorrect ? "border-red-300" : "border-black"
+              } border-black border mt-1 w-full rounded-md`}
               placeholder="Enter your email"
               onChange={(e) => handleInput("email", e)}
             />
@@ -174,7 +176,9 @@ const SignIn = () => {
           label="Phone number"
           name="Phone number"
           type="number"
-          className="p-2 border-black border appearance-none mt-1  w-full rounded-md"
+          className={`p-2 ${
+            newUserDetail.isPhoneNumCorrect ? "border-red-300" : "border-black"
+          } border-black border appearance-none mt-1  w-full rounded-md`}
           placeholder="Enter your Phone number"
           classData="mt-2.5"
           onChange={(e) => handleInput("phoneNum", e)}
@@ -194,7 +198,9 @@ const SignIn = () => {
               name="password"
               type="password"
               isPassword
-              className="p-2 border-black border mt-1 w-full rounded-md"
+              className={`p-2 ${
+                newUserDetail.isPassCorrect ? "border-red-300" : "border-black"
+              } border mt-1 w-full rounded-md`}
               placeholder="Enter your password"
               classData=" relative"
               onChange={(e) => handleInput("password", e)}
@@ -213,7 +219,9 @@ const SignIn = () => {
               name="Cpassword"
               type="password"
               isPassword
-              className="p-2 border-black border mt-1 w-full rounded-md"
+              className={`p-2 ${
+                newUserDetail.isCPassCorrect ? "border-red-300" : "border-black"
+              } border mt-1 w-full rounded-md`}
               placeholder="Enter password again"
               classData=" relative"
               onChange={(e) => handleInput("cPassword", e)}
@@ -228,13 +236,15 @@ const SignIn = () => {
           </div>
         </div>
         <div className="mt-2.5">
-          <label htmlFor="Address">Address(optional)</label>
+          <label htmlFor="Address">Address</label>
           <br />
           <textarea
             name="Address"
             onChange={(e) => handleInput("address", e)}
             id="Address"
-            className="p-2 border-black border appearance-none mt-1  w-full rounded-md"
+            className={`p-2 ${
+              newUserDetail.isAddressEnter ? "border-black" : "border-red-300"
+            } border-black border appearance-none mt-1  w-full rounded-md`}
           ></textarea>
           {!newUserDetail.isAddressEnter && (
             <p className="text-red-300 mt-1">

@@ -91,7 +91,9 @@ const LogIn = () => {
             label="Email"
             name="Email"
             type="text"
-            className="p-2 border-black border mt-1 w-full rounded-md"
+            className={`p-2 ${
+              userData.isEmailCorrect ? "border-red-300" : "border-black"
+            }  border mt-1 w-full rounded-md`}
             placeholder="Enter your email"
             onChange={(e) =>
               setUserData((state) => ({ ...state, emailData: e.target.value }))
@@ -102,7 +104,7 @@ const LogIn = () => {
               {userData.emailData.length == 0
                 ? "please enter email"
                 : fnData
-                ? "Email not found,place create account"
+                ? "Email not found, place create account"
                 : "Please enter correct email"}
             </p>
           )}
@@ -113,7 +115,9 @@ const LogIn = () => {
             type="password"
             isPassword={true}
             classDataName="relative"
-            className="p-2 border-black border mt-1 w-full rounded-md "
+            className={`p-2 ${
+              userData.isPassCorrect ? "border-red-300" : "border-black"
+            } border mt-1 w-full rounded-md`}
             placeholder="Enter your password"
             onChange={(e) =>
               setUserData((state) => ({ ...state, passData: e.target.value }))
