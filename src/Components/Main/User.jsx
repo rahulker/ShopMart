@@ -40,6 +40,10 @@ const User = () => {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    setValidation(() => ({
+      isEmailNotCorrect: false,
+      isPhoneNumNotCorrect: false,
+    }));
     if (
       userDetailsUpdate.email.trim() === "" &&
       userDetailsUpdate.phoneNum.trim() === ""
@@ -89,36 +93,42 @@ const User = () => {
         </div>
         <form className="mt-3" onSubmit={handleSubmit}>
           <div className="grid sm:grid-cols-2 items-center gap-2.5 sm:gap-10">
-            <UserEditInput
-              isEdit={isEdit}
-              userData={userData.email}
-              label="Email"
-              type="email"
-              value={userDetailsUpdate.email}
-              onChange={(e) => handleChages("email", e)}
-            />
-            {validation.isEmailNotCorrect && (
-              <p className="text-red-300 mt-1.5">
-                {userDetailsUpdate.email.length == 0
-                  ? "please enter email"
-                  : "Please enter correct email"}
-              </p>
-            )}
-            <UserEditInput
-              isEdit={isEdit}
-              userData={userData.phoneNum}
-              label="Phone number"
-              type="number"
-              value={userDetailsUpdate.phoneNum}
-              onChange={(e) => handleChages("phoneNum", e)}
-            />
-            {validation.isPhoneNumNotCorrect && (
-              <p className="text-red-300 mt-1.5">
-                {userDetailsUpdate.phoneNum.length == 0
-                  ? "please enter phone number"
-                  : "Please enter correct phone number"}
-              </p>
-            )}
+            <div>
+              <UserEditInput
+                isEdit={isEdit}
+                userData={userData.email}
+                label="Email"
+                type="email"
+                value={userDetailsUpdate.email}
+                isTrue={validation.isEmailNotCorrect}
+                onChange={(e) => handleChages("email", e)}
+              />
+              {validation.isEmailNotCorrect && (
+                <p className="text-red-300 mt-1.5">
+                  {userDetailsUpdate.email.length == 0
+                    ? "please enter email"
+                    : "Please enter correct email"}
+                </p>
+              )}
+            </div>
+            <div>
+              <UserEditInput
+                isEdit={isEdit}
+                userData={userData.phoneNum}
+                label="Phone number"
+                type="number"
+                value={userDetailsUpdate.phoneNum}
+                isTrue={validation.isPhoneNumNotCorrect}
+                onChange={(e) => handleChages("phoneNum", e)}
+              />
+              {validation.isPhoneNumNotCorrect && (
+                <p className="text-red-300 mt-1.5">
+                  {userDetailsUpdate.phoneNum.length == 0
+                    ? "please enter phone number"
+                    : "Please enter correct phone number"}
+                </p>
+              )}
+            </div>
           </div>
           <div className="sm:mt-4 mt-2.5">
             <label className="text-xl">Address</label>
