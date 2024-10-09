@@ -31,21 +31,21 @@ const Home = () => {
           <SwiperSlide>
             <img
               src={IMAGEPATH.banner1}
-              className="w-full h-[280px] sm:h-[300px] md:h-[380px] lg:h-[500px] object-cover"
+              className="w-full h-[280px] sm:h-[300px] md:h-[380px] lg:h-[580px] object-cover"
               alt="banner 1"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={IMAGEPATH.banner2}
-              className="w-full h-[280px] sm:h-[300px] md:h-[380px] lg:h-[500px] object-cover"
+              className="w-full h-[280px] sm:h-[300px] md:h-[380px] lg:h-[580px] object-cover"
               alt="banner 2"
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src={IMAGEPATH.banner3}
-              className="w-full h-[280px] sm:h-[300px] md:h-[380px] lg:h-[500px] object-cover"
+              className="w-full h-[280px] sm:h-[300px] md:h-[380px] lg:h-[580px] object-cover"
               alt="banner 3"
             />
           </SwiperSlide>
